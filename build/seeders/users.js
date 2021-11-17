@@ -1,2 +1,14 @@
 'use strict';
-const { hashSync: $ } = require('bcryptjs'); module.exports = { up: async _ => { await _.bulkInsert('Users', [{ firstName: process.env.ADMIN_FIRSTNAME, email: process.env.ADMIN_EMAIL, password: $(process.env.ADMIN_PASS), courier: true, initialized: true }]); }, down: async _ => { await _.bulkDelete('Users', null, {}); } };
+const { hashSync } = require('bcryptjs');
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkInsert('Users', [
+      { username: 'demo', email: 'demo@website.io', password: hashSync('password') }
+    ]);
+  },
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete('Users', null, {});
+  }
+};
