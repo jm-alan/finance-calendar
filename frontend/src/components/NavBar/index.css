@@ -1,0 +1,11 @@
+.main_button {
+    border-radius: 7px;
+    height: 35px;
+    width: 100px;
+    margin: 10px;
+}
+
+.button_container {
+    display: flex;
+    justify-content: right;
+}
