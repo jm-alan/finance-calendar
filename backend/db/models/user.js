@@ -33,8 +33,8 @@ module.exports = (sequelize, { DataTypes, fn }) => {
       return await User.create({ firstName, email, password });
     }
 
-    static associate (models) {
-
+    static associate ({ Account, Item }) {
+      [Account, Item].forEach(model => User.hasMany(model, { foreignKey: 'user_id' }));
     }
   }
 
