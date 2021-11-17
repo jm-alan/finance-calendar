@@ -19,7 +19,7 @@ body {
 .screen {
     background-image: url(../../media/iphone_screen.jpg);
     background-size: contain;
-    border: 2px solid rgba(157, 157, 157, 0.3);
+    /* border: .5px solid rgba(157, 157, 157, 0.3); */
     background-position: center center;
     height: 450px;
     margin: 50px 6px;
