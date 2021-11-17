@@ -6,6 +6,7 @@ module.exports = (sequelize, { DataTypes, fn }) => {
   class Item extends Model {
     static associate ({ User, Account }) {
       Item.belongsTo(User, { foreignKey: 'user_id' });
+      Item.belongsTo(Account, { foreignKey: 'account_id' });
     }
   }
 
@@ -21,6 +22,11 @@ module.exports = (sequelize, { DataTypes, fn }) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: { model: 'Users' }
+    },
+    account_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: { model: 'Accounts' }
     },
     createdAt: {
       type: DataTypes.DATE,
