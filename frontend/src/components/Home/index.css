@@ -1,7 +1,8 @@
 .homepage_container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    margin-top: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .homepage_header {

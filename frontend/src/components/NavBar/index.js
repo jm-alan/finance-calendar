@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { SetModal } from '../../store/modal';
 import { LogOut } from '../../store/session';
 import { ShowModal } from '../../store/UX';
+import './index.css';
 
 import LoginForm from '../Auth/LoginForm';
 import SignupForm from '../Auth/SignupForm';
@@ -41,14 +42,14 @@ export default function NavBar () {
           </>
           )
         : (
-          <>
-            <button onClick={popLogin}>
+          <div className='button_container'>
+            <button className='main_button' onClick={popLogin}>
               Log In
             </button>
-            <button onClick={popSignup}>
+            <button className='main_button' onClick={popSignup}>
               Sign Up
             </button>
-          </>
+          </div>
           )}
     </nav>
   );
