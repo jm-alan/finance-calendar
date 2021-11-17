@@ -9,6 +9,8 @@ const sequelize = process.env.DATABASE_URL
 
 const db = {
   User: require('./user')(sequelize, Sequelize),
+  Account: require('./account')(sequelize, Sequelize),
+  Item: require('./item')(sequelize, Sequelize),
   sequelize,
   Sequelize
 };
