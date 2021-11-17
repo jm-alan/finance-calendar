@@ -17,7 +17,7 @@ export default function Home () {
           Hello! Please either log in or sign up!
         </h1>
         <div className='homepage_container'>
-          <h1>A smarter way to keep track of your finances</h1>
+          <h1 className='homepage_header'>A smarter way to keep track of your finances</h1>
           <Iphone />
         </div>
       </div>

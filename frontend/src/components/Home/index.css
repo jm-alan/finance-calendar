@@ -1,4 +1,11 @@
 .homepage_container {
   display: flex;
-  margin-left: 200px;
+  align-items: center;
+  justify-content: center;
+}
+
+.homepage_header {
+    font-size: 60px;
+    width: 400px;
+    height: auto;
 }
