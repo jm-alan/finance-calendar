@@ -1,6 +1,5 @@
 body {
-    /* background: linear-gradient(90deg, rgba(46,124,255,1) 0%, rgba(129,69,249,1) 100%); */
-    background-color: lightblue;
+    background: linear-gradient(90deg, rgba(46,124,255,1) 0%, rgba(129,69,249,1) 100%);
 }
 
 .placement {
@@ -18,7 +17,10 @@ body {
 }
 
 .screen {
-    background-color: #262626;
+    background-image: url(../../media/iphone_screen.jpg);
+    background-size: contain;
+    border: 2px solid rgba(157, 157, 157, 0.3);
+    background-position: center center;
     height: 450px;
     margin: 50px 6px;
     overflow: hidden;
