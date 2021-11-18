@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import Iphone from '../Iphone';
+import Calendar from '../Calendar';
 import './index.css';
 
 export default function Home () {
