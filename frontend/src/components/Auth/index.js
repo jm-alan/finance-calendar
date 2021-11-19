@@ -4,6 +4,8 @@ import { HideModal } from '../../store/UX';
 
 import { ClearErrors } from '../../store/errors';
 
+import './index.css';
+
 export default function Auth ({ onSubmit, children }) {
   const dispatch = useDispatch();
 
@@ -23,7 +25,7 @@ export default function Auth ({ onSubmit, children }) {
   return (
     <form
       onSubmit={wrappedSubmit}
-      className='auth-form'
+      className='auth-form background-purple'
     >
       {children}
     </form>

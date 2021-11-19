@@ -21,7 +21,7 @@ export default function SignupForm () {
   return (
     <Auth onSubmit={onSubmit}>
       <AuthInput
-        type='username'
+        type='firstname'
         onChangeText={setUsername}
         value={username}
       />
@@ -40,7 +40,7 @@ export default function SignupForm () {
         onChangeText={setRepeatPassword}
         value={repeatPassword}
       />
-      <button className='auth-button'>
+      <button className='pop-button background-blue'>
         Sign Up
       </button>
     </Auth>

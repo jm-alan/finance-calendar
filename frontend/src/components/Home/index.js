@@ -2,13 +2,13 @@ import { useSelector } from 'react-redux';
 import Iphone from '../Iphone';
 import './index.css';
 
-export default function Home () {
+export default function Home ({ asdf }) {
   const user = useSelector(state => state.session.user);
 
   return user
     ? (
       <h1>
-        Hello, {user.username}!
+        Hello, {user.firstName}!
       </h1>
       )
     : (

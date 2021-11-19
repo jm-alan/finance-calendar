@@ -9,7 +9,8 @@
 
 #modal-content {
   background-color: white;
-  border-radius: 5px;
-  width: 40vw;
-  height: 40vh;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 30vw;
+  height: min-content;
 }

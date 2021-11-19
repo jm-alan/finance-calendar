@@ -18,7 +18,7 @@ export default function LoginForm () {
   return (
     <Auth onSubmit={onSubmit}>
       <AuthInput
-        type='identification'
+        type='email'
         onChangeText={setIdentification}
         value={identification}
       />
@@ -27,7 +27,7 @@ export default function LoginForm () {
         onChangeText={setPassword}
         value={password}
       />
-      <button className='auth-button'>
+      <button className='pop-button background-blue'>
         Log In
       </button>
     </Auth>

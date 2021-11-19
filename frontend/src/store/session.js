@@ -14,13 +14,13 @@ export const Load = () => async dispatch => {
   dispatch(setSession(user));
 };
 
-export const LogIn = (identification, password) => async dispatch => {
-  const { user } = await csrfetch.post('/api/session/', { identification, password });
+export const LogIn = (email, password) => async dispatch => {
+  const { user } = await csrfetch.post('/api/session/', { email, password });
   dispatch(setSession(user));
 };
 
-export const SignUp = (username, email, password) => async dispatch => {
-  const { user } = await csrfetch.post('/api/users/', { username, email, password });
+export const SignUp = (firstName, email, password) => async dispatch => {
+  const { user } = await csrfetch.post('/api/users/', { firstName, email, password });
   dispatch(setSession(user));
 };
 
