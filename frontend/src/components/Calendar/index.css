@@ -13,7 +13,5 @@
 
 .day {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(1, 120px);
-  border: solid 0.5px rgb(4, 4, 4);
+  border: solid 0.5px black;
 }
