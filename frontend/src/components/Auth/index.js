@@ -25,7 +25,7 @@ export default function Auth ({ onSubmit, children }) {
   return (
     <form
       onSubmit={wrappedSubmit}
-      className='auth-form'
+      className='auth-form background-purple'
     >
       {children}
     </form>
