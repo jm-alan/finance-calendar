@@ -12,7 +12,7 @@ const newAccount = (account) => ({ type: CREATE_ACCOUNTS, payload: account });
 export const getAllAccounts = (accountId) => async (dispatch) => {
     const res = await fetch(`/api/accounts/`)
     const data = await res.json();
-    dispatch(getReviews(data));
+    dispatch(getAccounts(data));
 }
 
 export const createAccount = (accountObj) => async (dispatch) => {
