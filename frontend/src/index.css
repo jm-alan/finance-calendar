@@ -1,3 +1,9 @@
+:root {
+  --root-background-blue: rgba(46, 124, 255, 1);
+  --root-background-purple: rgba(129,69,249,1);
+  --root-background-gradient: linear-gradient(90deg, var(--root-background-blue) 0%, var(--root-background-purple) 100%);
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
