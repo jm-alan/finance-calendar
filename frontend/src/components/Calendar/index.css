@@ -25,13 +25,37 @@
   width: 100%;
   padding: 30px 100px;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(6, 1fr);
 }
 
 .calendar_day {
+  position: relative;
   background-color: white;
   margin: 5px;
   padding: 5px;
-  border: 1px solid black;
   border-radius: 10px;
+  overflow: hidden;
+}
+
+.calendar_date {
+  color: var(--root-relative-seafoam);
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  font-size: 20px;
+  border-bottom-right-radius: 10px;
+}
+
+.calendar_controls {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px 100px;
+}
+
+.calendar_controls button {
+  margin-left: 10px;
+  width: 50px;
 }
