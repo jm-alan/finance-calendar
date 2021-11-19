@@ -1,4 +1,8 @@
-.day_container {
+.calendar_container {
+  height: calc(var(--below-navbar) - 50px);
+}
+
+.weekday_container {
   display: grid;
   background-color: white;
   grid-template-columns: repeat(7, 1fr);
