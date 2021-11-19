@@ -1,6 +1,6 @@
 import './index.css';
 
-export default function () {
+export default function Calendar () {
   return (
     <div className='calendar-container'>
       <div className='day_container'>
