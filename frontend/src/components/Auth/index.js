@@ -4,6 +4,8 @@ import { HideModal } from '../../store/UX';
 
 import { ClearErrors } from '../../store/errors';
 
+import './index.css';
+
 export default function Auth ({ onSubmit, children }) {
   const dispatch = useDispatch();
 
