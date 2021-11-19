@@ -1,16 +1,16 @@
 .day_container {
-    display: grid;
-    background-color: white;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(1, 30px);
-    margin: 100px;
-  }
-  .day {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(1, 120px);
-  }
+  display: grid;
+  background-color: white;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(1, 30px);
+  margin: 100px;
+}
+.day {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(1, 120px);
+}
 
-  .day_container > div{
-    border: solid 0.5px rgb(4, 4, 4);
-  }
+.day_container > div{
+  border: solid 0.5px rgb(4, 4, 4);
+}
