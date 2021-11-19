@@ -8,10 +8,11 @@ import Modal from './components/Modal';
 import configureStore from './store';
 import Errors from './components/Errors';
 import csrfetch from './store/csrfetch';
+import findCookie from './utils/findCookie';
 import { SetMooring } from './store/modal';
 
 import './index.css';
-import findCookie from './utils/findCookie';
+import './utils/prototypes';
 
 const store = configureStore();
 
