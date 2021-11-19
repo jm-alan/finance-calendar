@@ -19,8 +19,8 @@ export const LogIn = (email, password) => async dispatch => {
   dispatch(setSession(user));
 };
 
-export const SignUp = (username, email, password) => async dispatch => {
-  const { user } = await csrfetch.post('/api/users/', { username, email, password });
+export const SignUp = (firstName, email, password) => async dispatch => {
+  const { user } = await csrfetch.post('/api/users/', { firstName, email, password });
   dispatch(setSession(user));
 };
 
