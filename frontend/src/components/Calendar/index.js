@@ -3,7 +3,7 @@ import './index.css';
 export default function Calendar () {
   return (
     <div className='calendar_container'>
-      <div className='day_container'>
+      <div className='weekday_container'>
         <div className='day'>Sun</div>
         <div className='day'>Mon</div>
         <div className='day'>Tue</div>

@@ -8,12 +8,7 @@ export default function Home ({ asdf }) {
 
   return user
     ? (
-      <div>
-        <h1>
-          Hello, {user.firstName}!
-        </h1>
-        <Calendar />
-      </div>
+      <Calendar />
       )
     : (
       <div>

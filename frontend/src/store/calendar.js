@@ -9,18 +9,24 @@ export const PrevMonth = () => ({
 });
 
 export default function reducer (
-  state = { month: (new Date()).getMonth() }, { type }
+  state = {
+    month: (new Date()).getMonth(),
+    year: (new Date()).getFullYear()
+  },
+  { type }
 ) {
   switch (type) {
     case NEXT_MONTH:
       return {
         ...state,
-        month: state.month === 11 ? 0 : state.month + 1
+        month: state.month === 11 ? 0 : state.month + 1,
+        year: state.month === 11 ? state.year + 1 : state.year
       };
     case PREV_MONTH:
       return {
         ...state,
-        month: state.month === 0 ? 11 : state.month - 1
+        month: state.month === 0 ? 11 : state.month - 1,
+        year: state.month === 0 ? state.year - 1 : state.year
       };
     default:
       return state;
