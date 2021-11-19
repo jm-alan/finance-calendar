@@ -6,7 +6,9 @@ export default function Day ({ date, gridColumnStart }) {
         gridColumnStart
       }}
     >
-      {date.split('/')[1]}
+      <div className='calendar_date background-purple'>
+        {date.split('/')[1]}
+      </div>
     </div>
   );
 }
