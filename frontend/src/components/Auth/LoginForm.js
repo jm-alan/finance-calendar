@@ -27,7 +27,7 @@ export default function LoginForm () {
         onChangeText={setPassword}
         value={password}
       />
-      <button className='pop-button'>
+      <button className='pop-button background-blue'>
         Log In
       </button>
     </Auth>

@@ -36,18 +36,18 @@ body {
   left: 2px;
 }
 
-.pop-button.blue {
+.background-blue {
   background-color: var(--root-background-blue);
 }
 
-.pop-button.purple {
+.background-purple {
   background-color: var(--root-background-purple);
 }
 
-.pop-button.red {
+.background-red {
   background-color: var(--root-relative-red);
 }
 
-.pop-button.seafoam {
+.background-seafoam {
   background-color: var(--root-relative-seafoam);
 }
