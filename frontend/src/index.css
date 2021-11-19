@@ -18,13 +18,13 @@ body {
   transition:
     top 0.125s,
     left 0.125s,
-    box-shadow 0.125s;
+    box-shadow 0.2s;
   color: white;
   padding: 5px;
   border: none;
   background-color: unset;
   border-radius: 5px;
-  box-shadow: 2px 2px 5px darkgrey;
+  box-shadow: 2px 2px 5px rgb(85, 85, 85);
   position: relative;
   top: 0;
   left: 0;
