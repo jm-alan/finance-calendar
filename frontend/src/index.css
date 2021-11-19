@@ -4,6 +4,7 @@
   --root-background-gradient: linear-gradient(90deg, var(--root-background-blue) 0%, var(--root-background-purple) 100%);
   --root-relative-red: rgb(255, 46, 46, 1);
   --root-relative-seafoam: rgb(46, 255, 126);
+  --root-box-shadow: 2px 2px 5px rgb(85, 85, 85);
 }
 
 *, *::before, *::after {
@@ -24,7 +25,7 @@ body {
   border: none;
   background-color: unset;
   border-radius: 5px;
-  box-shadow: 2px 2px 5px rgb(85, 85, 85);
+  box-shadow: var(--root-box-shadow);
   position: relative;
   top: 0;
   left: 0;
