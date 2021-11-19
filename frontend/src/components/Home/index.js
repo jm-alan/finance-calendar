@@ -8,9 +8,12 @@ export default function Home () {
 
   return user
     ? (
-      <h1>
-        Hello, {user.username}!
-      </h1>
+      <div>
+        <h1>
+          Hello, {user.username}!
+        </h1>
+        <Calendar />
+      </div>
       )
     : (
       <div>
