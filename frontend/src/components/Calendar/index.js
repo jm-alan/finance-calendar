@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import Day from './Day';
+import { NextMonth, PrevMonth } from '../../store/calendar';
 
 import './index.css';
 
@@ -12,6 +13,20 @@ export default function Calendar () {
 
   return (
     <div className='calendar_container'>
+      <div className='calendar_controls'>
+        <button
+          className='pop-button background-blue'
+          onClick={() => dispatch(PrevMonth())}
+        >
+          Prev
+        </button>
+        <button
+          className='pop-button background-blue'
+          onClick={() => dispatch(NextMonth())}
+        >
+          Next
+        </button>
+      </div>
       <div className='weekday_container'>
         <div className='weekday'>Sun</div>
         <div className='weekday'>Mon</div>
