@@ -3,7 +3,7 @@ export default function AuthInput ({ type, onChangeText, value }) {
     <label>
       {(() => {
         if (type === 'username') return 'Username';
-        if (type === 'email') return 'Email';
+        if (type === 'email') return 'Email address';
         if (type === 'identification') return 'Username or email address';
         if (type === 'password') return 'Password';
         if (type === 'repeat-password') return 'Repeat Password';
