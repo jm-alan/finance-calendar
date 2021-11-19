@@ -7,8 +7,10 @@
   background-color: white;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(1, 30px);
-  margin: 100px;
+  margin: 0px 100px;
+  margin-top: 50px;
 }
+
 .day {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
