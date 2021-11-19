@@ -9,8 +9,5 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(1, 120px);
-}
-
-.day_container > div{
   border: solid 0.5px rgb(4, 4, 4);
 }
