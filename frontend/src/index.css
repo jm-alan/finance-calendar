@@ -11,3 +11,23 @@
 body {
   margin: 0;
 }
+
+.pop-button {
+  transition:
+    top 0.125s,
+    left 0.125s,
+    box-shadow 0.125s;
+  border: none;
+  background-color: unset;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px darkgrey;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.pop-button:active {
+  box-shadow: none;
+  top: 2px;
+  left: 2px;
+}
