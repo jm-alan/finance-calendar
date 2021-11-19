@@ -18,7 +18,7 @@ export default function LoginForm () {
   return (
     <Auth onSubmit={onSubmit}>
       <AuthInput
-        type='identification'
+        type='email'
         onChangeText={setIdentification}
         value={identification}
       />
