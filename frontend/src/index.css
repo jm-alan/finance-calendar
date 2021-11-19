@@ -1,7 +1,54 @@
+:root {
+  --root-background-blue: rgba(46, 124, 255, 1);
+  --root-background-purple: rgba(129,69,249,1);
+  --root-background-gradient: linear-gradient(90deg, var(--root-background-blue) 0%, var(--root-background-purple) 100%);
+  --root-relative-red: rgb(255, 46, 46, 1);
+  --root-relative-seafoam: rgb(46, 255, 126);
+  --root-box-shadow: 2px 2px 5px rgb(85, 85, 85);
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+}
+
+.pop-button {
+  transition:
+    top 0.125s,
+    left 0.125s,
+    box-shadow 0.2s;
+  color: white;
+  padding: 5px;
+  border: none;
+  background-color: unset;
+  border-radius: 5px;
+  box-shadow: var(--root-box-shadow);
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.pop-button:active {
+  box-shadow: none;
+  top: 2px;
+  left: 2px;
+}
+
+.background-blue {
+  background-color: var(--root-background-blue);
+}
+
+.background-purple {
+  background-color: var(--root-background-purple);
+}
+
+.background-red {
+  background-color: var(--root-relative-red);
+}
+
+.background-seafoam {
+  background-color: var(--root-relative-seafoam);
 }

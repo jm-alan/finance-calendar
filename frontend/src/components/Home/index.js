@@ -3,18 +3,18 @@ import Iphone from '../Iphone';
 import Calendar from '../Calendar';
 import './index.css';
 
-export default function Home () {
+export default function Home({ asdf }) {
   const user = useSelector(state => state.session.user);
 
   return user
     ? (
       <div>
         <h1>
-          Hello, {user.username}!
-        </h1>
+          Hello, {user.firstName}!
         <Calendar />
+        </h1>
       </div>
-      )
+    )
     : (
       <div>
         <h1>
@@ -25,5 +25,5 @@ export default function Home () {
           <Iphone />
         </div>
       </div>
-      );
+    );
 }

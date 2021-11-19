@@ -13,8 +13,8 @@ router.delete('/', (_req, res) => {
 });
 
 router.post('/', asyncHandler(async (req, res) => {
-  const { body: { identification, password } } = req;
-  const user = await User.LogIn({ identification, password });
+  const { body: { email, password } } = req;
+  const user = await User.LogIn({ email, password });
   const token = createToken(user.id);
   const isProduction = environment === 'production';
   res.cookie('token', token, {
