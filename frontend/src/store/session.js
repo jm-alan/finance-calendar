@@ -14,8 +14,8 @@ export const Load = () => async dispatch => {
   dispatch(setSession(user));
 };
 
-export const LogIn = (identification, password) => async dispatch => {
-  const { user } = await csrfetch.post('/api/session/', { identification, password });
+export const LogIn = (email, password) => async dispatch => {
+  const { user } = await csrfetch.post('/api/session/', { email, password });
   dispatch(setSession(user));
 };
 
