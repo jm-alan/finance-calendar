@@ -31,3 +31,11 @@ body {
   top: 2px;
   left: 2px;
 }
+
+.pop-button.blue {
+  background-color: var(--root-background-blue);
+}
+
+.pop-button.purple {
+  background-color: var(--root-background-purple);
+}
