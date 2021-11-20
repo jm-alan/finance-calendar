@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import Iphone from '../Iphone';
+import Calendar from '../Calendar';
 import './index.css';
 
 export default function Home ({ asdf }) {
@@ -7,9 +8,7 @@ export default function Home ({ asdf }) {
 
   return user
     ? (
-      <h1>
-        Hello, {user.firstName}!
-      </h1>
+      <Calendar />
       )
     : (
       <div>

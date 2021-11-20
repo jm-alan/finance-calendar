@@ -5,12 +5,14 @@ import modal from './modal';
 import UX from './UX';
 import session from './session';
 import errors from './errors';
+import calendar from './calendar';
 
 const rootReducer = combineReducers({
   session,
   UX,
   modal,
-  errors
+  errors,
+  calendar
 });
 
 let enhancer;
