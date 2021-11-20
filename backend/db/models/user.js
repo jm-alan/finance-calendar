@@ -8,6 +8,10 @@ module.exports = (sequelize, { DataTypes, fn }) => {
       return !!password && compareSync(password, this.password);
     }
 
+    async findAccountByPk (id) {
+      return (await this.getAccounts({ where: { id } }))[0] ?? null;
+    }
+
     get info () {
       const { id, firstName, email } = this;
       return { id, firstName, email };
