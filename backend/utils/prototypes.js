@@ -5,7 +5,19 @@ String.prototype.upperCaseFirst = function () {
 };
 
 String.prototype.truncateUntil = function (pattern) {
+  const validateAbsoluteStart = pattern.toString();
+  if (!(validateAbsoluteStart[1] === '^')) {
+    pattern = new RegExp(
+      `^${validateAbsoluteStart.slice(1, validateAbsoluteStart.length - 1)}`
+    );
+  }
+  const validateAbsoluteEnd = pattern.toString();
+  if (!(validateAbsoluteEnd[validateAbsoluteEnd.length - 2] === '$')) {
+    pattern = new RegExp(
+      `${validateAbsoluteEnd.slice(1, validateAbsoluteEnd.length - 1)}$`
+    );
+  }
   let out = this.toString();
-  while (!out.match(pattern)) out = out.slice(0, out.length - 1);
+  while (!out.match(pattern) && out.length) out = out.slice(0, out.length - 1);
   return out;
 };
