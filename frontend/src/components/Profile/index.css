@@ -6,15 +6,12 @@
     background-size:unset ;
     border: .5px solid rgba(17, 157, 157, 0.3);
     background-position: center center;
-
 }
 
 .profile_page_container {
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 7px;
-    /* display: flex;
-    flex-direction: row;
-    justify-content: space-between; */
+    margin: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
