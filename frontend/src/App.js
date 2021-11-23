@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from './components/Home';
 import NavBar from './components/NavBar';
+import Profile from './components/Profile';
 import { Load } from './store/session';
 
 export default function App () {
@@ -19,10 +20,14 @@ export default function App () {
     <>
       <NavBar />
       <Switch>
-        <Route path='/'>
+        <Route exact path='/'>
           <Home />
+        </Route>
+        <Route path='/users/me/'>
+          <Profile />
         </Route>
       </Switch>
     </>
   );
 }
+

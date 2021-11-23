@@ -22,6 +22,7 @@ module.exports = (sequelize, { DataTypes, fn }) => {
     historic_balance: DataTypes.TEXT,
     user_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'Users'
       }

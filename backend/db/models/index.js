@@ -14,5 +14,6 @@ const db = {
   sequelize,
   Sequelize
 };
+Object.values(db).forEach(model => model.associate && model.associate(db));
 
 module.exports = db;
