@@ -65,4 +65,10 @@
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
     }
+    .name {
+        font-family: 'Roboto', sans-serif;
+        text-transform: capitalize;
+        font-size: 16px;
+        margin: 5px;
+    }
   }
