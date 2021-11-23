@@ -9,16 +9,21 @@
 }
 
 .profile_page_container {
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 7px;
+    margin: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
-.profile_page_container {
+.profile_info_container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
+
 
 .profile {
-    margin: 100px;
+    margin: 50px;
 }
