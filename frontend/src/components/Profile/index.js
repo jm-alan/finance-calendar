@@ -17,17 +17,17 @@ const Profile = () => {
         <div className='profile_page_container'>
             <div className='profile_info_container'>
                 <div className='profile_pic'></div>
-                <h1>{user.firstName}</h1>
-                <h2>{user.email}</h2>
+                <h1 className='name'>{user.firstName}</h1>
+                <h2 className='profile_email'>{user.email}</h2>
             </div>
             <div className='accounts_container'>
-                <h1>Accounts Summary</h1>
+                {/* <h1 className='accounts_header'>Accounts Summary</h1> */}
                 {console.log(accounts)}
                 {Object.values(accounts).map(account => {
                     return (
-                        <div>
-                            <h2>{account.name}</h2>
-                            <p>${account.balance}</p>
+                        <div className='account_container'>
+                            <h2 className='name'>{account.name}</h2>
+                            <p className='balance'>${account.balance}</p>
                         </div>
                     )
                 })}

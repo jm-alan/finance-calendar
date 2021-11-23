@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap');
+
+
 .profile_pic {
     border-radius: 50%;
     height: 100px;
@@ -6,6 +9,7 @@
     background-size:unset ;
     border: .5px solid rgba(17, 157, 157, 0.3);
     background-position: center center;
+    margin: 10px;
 }
 
 .profile_page_container {
@@ -23,7 +27,42 @@
     align-items: center;
 }
 
-
 .profile {
     margin: 50px;
 }
+
+.name {
+    font-family: 'Roboto', sans-serif;
+    text-transform: capitalize;
+    font-size: 20px;
+    margin: 5px;
+}
+
+.profile_email {
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    font-size: 16px;
+    margin: 5px;
+}
+
+.account_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.balance {
+    margin-left: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+    .profile_page_container {
+        border-radius: 7px;
+        margin: 10px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+  }
