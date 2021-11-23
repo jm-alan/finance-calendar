@@ -1,0 +1,14 @@
+.profile_pic {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    background-image: url(../../media/profile-pic.jpg);
+    background-size:unset ;
+    border: .5px solid rgba(17, 157, 157, 0.3);
+    background-position: center center;
+}
+
+.profile_page_container {
+    background-color: white;
+    border-radius: 7px;
+}

@@ -6,13 +6,15 @@ import UX from './UX';
 import session from './session';
 import errors from './errors';
 import calendar from './calendar';
+import accounts from './account';
 
 const rootReducer = combineReducers({
   session,
   UX,
   modal,
   errors,
-  calendar
+  calendar,
+  accounts
 });
 
 let enhancer;

@@ -10,8 +10,8 @@ const deleteAccount = (account) => ({ type: CREATE_ACCOUNTS, payload: account })
 
 
 // thunk actions
-export const getAccountsByUser = (userId) => async (dispatch) => {
-    const res = await fetch(`/api/accounts/user/${userId}`)
+export const getAllAccounts = () => async (dispatch) => {
+    const res = await fetch(`/api/accounts/`)
     const data = await res.json();
     dispatch(getAccounts(data));
 }
