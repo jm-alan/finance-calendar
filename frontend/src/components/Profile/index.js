@@ -16,11 +16,11 @@ const Profile = () => {
     return (
         <div className='profile_page_container'>
             <div className='profile_info_container'>
-                <div className='profile_pic'></div>
+                <div className='profile_pic profile'></div>
                 <h1>{user.firstName}</h1>
                 <h2>{user.email}</h2>
             </div>
-            <div className='accounts_container'>
+            <div className='accounts_container profile'>
                 <h1>Accounts Summary</h1>
                 {console.log(accounts)}
                 {Object.values(accounts).map(account => {
