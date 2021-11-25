@@ -1,6 +1,10 @@
 'use strict';
 
-import { Sequelize, AbstractDataType, AbstractDataTypeConstructor, } from "sequelize/types";
+import type { DataTypes, Sequelize } from "sequelize/types";
+import type { QueryArg, AggregateModels } from "./utilTypes";
+import {Account} from '.'
+import { Model, ValidationError, ValidationErrorItem } from 'sequelize';
+import { hashSync, compareSync } from 'bcryptjs';
 
 export type loginCredentials = {
   email: string,
@@ -13,17 +17,19 @@ export type signupCredentials = {
   password: string;
 };
 
-const { Model, ValidationError, ValidationErrorItem } = require('sequelize');
-const { hashSync, compareSync } = require('bcryptjs');
-
-module.exports = (sequelize: Sequelize, { DataTypes, fn }: { DataTypes: AbstractDataType | AbstractDataTypeConstructor, fn: any; }) => {
+export default (sequelize: Sequelize, { STRING }: typeof DataTypes) => {
   class User extends Model {
+    id: number;
+    firstName: string;
+    email: string;
+    password: string;
+    getAccounts: ({}: QueryArg) => Promise<typeof Account[]>;
     validatePass(password: string) {
       return !!password && compareSync(password, this.password);
     }
 
-    async findAccountByPk(id: number) {
-      return (await this.getAccounts({ where: { id } }))[0] ?? null;
+    async findAccountByPk(id: number): Promise<typeof Account | null> {
+      return (await this.getAccounts({ where: { id } }))[0] ?? new Promise(res => res(null));
     }
 
     get info() {
@@ -51,7 +57,7 @@ module.exports = (sequelize: Sequelize, { DataTypes, fn }: { DataTypes: Abstract
       return await User.create({ firstName, email, password });
     }
 
-    static associate({ Account, Item }) {
+    static associate({ Account, Item }: AggregateModels) {
       User.hasMany(Account, { foreignKey: 'user_id' });
       User.hasMany(Item, { foreignKey: 'user_id' });
     }
@@ -59,25 +65,25 @@ module.exports = (sequelize: Sequelize, { DataTypes, fn }: { DataTypes: Abstract
 
   User.init({
     firstName: {
-      type: DataTypes.STRING,
+      type: STRING,
       validate: {
         not: {
           args: 'email',
           msg: 'Name cannot be an email'
         },
-        set(val) {
+        set(val: string) {
           if (!val.match(/[a-zA-Z0-9_]{5,30}/)) {
             const errors = [];
             if (val.length < 5) errors.push(new ValidationErrorItem('Username must be at least 5 characters'));
             if (val.length > 30) errors.push(new ValidationErrorItem('Username may not exceed 30 characters'));
-            if (val.match(/[^a-zA-Z0-9_]/g)) errors.push('Username may only contain the letters A-Z, the numbers 0-9, or an underscore');
+            if (val.match(/[^a-zA-Z0-9_]/g)) errors.push(new ValidationErrorItem('Username may only contain the letters A-Z, the numbers 0-9, or an underscore'));
             throw new ValidationError('Invalid username', errors);
           } else this.setDataValue('username', val);
         }
       }
     },
     email: {
-      type: DataTypes.STRING,
+      type: STRING,
       validate: {
         is: {
           args: ['^[a-zA-Z0-9+-_~]{1,64}@(?=.{1,64}\\.)\\w+[a-zA-Z-]\\w+\\.\\w{1,63}$'],
@@ -86,8 +92,8 @@ module.exports = (sequelize: Sequelize, { DataTypes, fn }: { DataTypes: Abstract
       }
     },
     password: {
-      type: DataTypes.STRING,
-      set(val) {
+      type: STRING,
+      set(val: string) {
         if (!val.match(/^(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[0-9])(?=\S*[!@#$%^&*()`~-])[a-zA-Z0-9!@#$%^&*()`~-]{8,}$/)) {
           const errors = [];
           if (val.length < 8) errors.push(new ValidationErrorItem('Password must be at least 8 characters.'));
@@ -99,14 +105,6 @@ module.exports = (sequelize: Sequelize, { DataTypes, fn }: { DataTypes: Abstract
           throw new ValidationError('Invalid password.', errors);
         } else this.setDataValue('password', hashSync(val));
       }
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: fn('now')
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: fn('now')
     }
   }, {
     sequelize,
