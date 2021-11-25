@@ -1,6 +1,8 @@
 'use strict';
 
-const defaultItems = [];
+import { QueryInterface } from "sequelize/types";
+
+const defaultItems: any[] = [];
 
 const makeItem = () => {
   const selector = Math.round(Math.random() * 4);
@@ -39,11 +41,11 @@ for (let i = 0; i < 1000; i++) {
 }
 
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  up: async (queryInterface: QueryInterface) => {
     await queryInterface.bulkInsert('Items', defaultItems);
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface: QueryInterface) => {
     await queryInterface.bulkDelete('Items', null, {});
   }
 };
