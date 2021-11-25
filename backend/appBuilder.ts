@@ -11,8 +11,12 @@ import errorHandler from './utils/errorHandler';
 
 const isProduction = environment === 'production';
 
-export default function appBuilder (ports) {
-  const apps = {};
+type AppObj = {
+  [key: string]: any
+}
+
+export default function appBuilder (ports: string[]) {
+  const apps: AppObj = {};
   for (const port of ports) {
     const app = express();
     apps[port] = app;
