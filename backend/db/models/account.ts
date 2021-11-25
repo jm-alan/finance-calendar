@@ -32,11 +32,6 @@ export default class Account
 
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
-
-  static associate() {
-    Account.belongsTo(User, { foreignKey: 'user_id' });
-    Account.hasMany(Item, { foreignKey: 'account_id' });
-  }
 }
 
 Account.init({

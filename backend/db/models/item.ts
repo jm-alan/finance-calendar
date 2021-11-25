@@ -38,11 +38,6 @@ export default class Item
   public category: string;
   public user_id: number;
   public account_id: number;
-
-  static associate() {
-    Item.belongsTo(User, { foreignKey: 'user_id' });
-    Item.belongsTo(Account, { foreignKey: 'account_id' });
-  }
 }
 
 Item.init({

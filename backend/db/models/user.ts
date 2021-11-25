@@ -89,16 +89,11 @@ export default class User extends Model<UserAttributes, UserCreationAttributes> 
     if (errors.length) throw new ValidationError('Could not accept identification', errors);
     return await User.create({ firstName, email, password });
   }
-
-  static associate() {
-    User.hasMany(Account, { foreignKey: 'user_id' });
-    User.hasMany(Item, { foreignKey: 'user_id' });
-  }
 }
 
 User.init({
   id: {
-    type: INTEGER.UNSIGNED,
+    type: INTEGER,
     autoIncrement: true,
     primaryKey: true
   },
