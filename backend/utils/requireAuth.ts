@@ -1,6 +1,8 @@
+import { NextFunction, Response } from 'express';
 import { RequestError } from '../RequestError';
+import { AuthenticatedRequest } from './types';
 
-export default function (req, _res, next) {
+export default function (req: AuthenticatedRequest, _res: Response, next: NextFunction) {
   if (req.user) return next();
 
   const err = new RequestError(
