@@ -1,11 +1,12 @@
 'use strict';
 
-import {  Model } from 'sequelize';
-import { DataTypes, Sequelize, ModelStatic } from 'sequelize/types'
+import type { DataTypes, Sequelize } from 'sequelize/types'
+import type { AggregateModels } from './utilTypes';
+import { Model } from 'sequelize';
 
 export default (sequelize: Sequelize, { INTEGER, DECIMAL, STRING, TEXT }: typeof DataTypes) => {
   class Account extends Model {
-    static associate({ User, Item }: { User: ModelStatic<Model<any, any>>, Item: ModelStatic<Model <any, any>> }) {
+    static associate({ User, Item }: AggregateModels) {
       Account.belongsTo(User, { foreignKey: 'user_id' });
       Account.hasMany(Item, { foreignKey: 'account_id' });
     }
