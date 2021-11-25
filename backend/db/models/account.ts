@@ -1,6 +1,6 @@
 'use strict';
 
-import type { Optional } from "sequelize/types";
+import type { Optional, HasManyGetAssociationsMixin } from "sequelize/types";
 
 import User from './user';
 import Item from "./item";
@@ -27,6 +27,8 @@ export default class Account
   public balance: number;
   public historic_balance: string;
   public user_id: number;
+
+  public getItems: HasManyGetAssociationsMixin<Item>;
 
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
