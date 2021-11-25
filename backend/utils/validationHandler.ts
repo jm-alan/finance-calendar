@@ -1,7 +1,8 @@
+import { NextFunction, Request, Response } from 'express';
 import { ValidationError } from 'sequelize';
 import { ExtendedValidationError } from '../RequestError';
 
-export default (err, _req, _res, next) => {
+export default (err: Error | ValidationError, _req: Request, _res: Response, next: NextFunction) => {
   if (err instanceof ValidationError) {
     const errOut = new ExtendedValidationError('Validation Error', err.message);
     errOut.errors = err.errors.map(e => e.message);
