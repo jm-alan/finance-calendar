@@ -1,4 +1,4 @@
-import { db, environment } from './';
+import { db, environment } from './index';
 import { Dialect, Options } from 'sequelize/types';
 
 const { username, password, database, host } = db;
