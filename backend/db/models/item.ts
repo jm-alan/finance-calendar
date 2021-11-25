@@ -2,10 +2,10 @@
 
 import type { Optional } from 'sequelize/types';
 
-import { Model, DataTypes } from 'sequelize';
-import { sequelize } from '.';
 import User from './user';
 import Account from './account';
+import { Model, DataTypes } from 'sequelize';
+import { sequelize } from '.';
 
 interface ItemAttributes {
   id: number;
