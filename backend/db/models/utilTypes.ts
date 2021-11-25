@@ -1,12 +1,13 @@
-import { DataTypes } from "sequelize/types";
-
-export type DataFnArg = {
-  DataTypes: typeof DataTypes,
-  fn: any
-}
+import { Account, Item, User } from "."
 
 export type QueryArg = {
   where: {
     id?: number
   }
+}
+
+export type AggregateModels = {
+  User: typeof User,
+  Account: typeof Account,
+  Item: typeof Item
 }
