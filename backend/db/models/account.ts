@@ -1,10 +1,11 @@
 'use strict';
 
-const { Model } = require('sequelize');
+import {  Model } from 'sequelize';
+import { DataTypes, Sequelize, ModelStatic } from 'sequelize/types'
 
-module.exports = (sequelize, { DataTypes, fn }) => {
+export default (sequelize: Sequelize, { INTEGER, DECIMAL, STRING, TEXT }: typeof DataTypes) => {
   class Account extends Model {
-    static associate ({ User, Item }) {
+    static associate({ User, Item }: { User: ModelStatic<Model<any, any>>, Item: ModelStatic<Model <any, any>> }) {
       Account.belongsTo(User, { foreignKey: 'user_id' });
       Account.hasMany(Item, { foreignKey: 'account_id' });
     }
@@ -12,27 +13,19 @@ module.exports = (sequelize, { DataTypes, fn }) => {
 
   Account.init({
     name: {
-      type: DataTypes.STRING(50),
+      type: STRING(50),
       allowNull: false
     },
     balance: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DECIMAL(10, 2),
       allowNull: false
     },
-    historic_balance: DataTypes.TEXT,
+    historic_balance: TEXT,
     user_id: {
-      type: DataTypes.INTEGER,
+      type: INTEGER,
       references: {
         model: 'Users'
       }
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: fn('NOW')
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: fn('NOW')
     }
   }, {
     sequelize,
