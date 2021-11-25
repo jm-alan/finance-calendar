@@ -1,10 +1,11 @@
 'use strict';
 
 import type { Optional } from 'sequelize/types';
-import type { AggregateModels } from './utilTypes';
 
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '.';
+import User from './user';
+import Account from './account';
 
 interface ItemAttributes {
   id: number;
@@ -38,7 +39,7 @@ export default class Item
   public user_id: number;
   public account_id: number;
 
-  static associate({ User, Account }: AggregateModels) {
+  static associate() {
     Item.belongsTo(User, { foreignKey: 'user_id' });
     Item.belongsTo(Account, { foreignKey: 'account_id' });
   }
