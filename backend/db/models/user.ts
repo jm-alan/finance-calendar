@@ -9,8 +9,8 @@ import type {
   Optional
 } from 'sequelize/types';
 
-import Account from './account';
 import Item from './item';
+import Account from './account';
 import { sequelize } from '.';
 import { Model, ValidationError, ValidationErrorItem, DataTypes } from 'sequelize';
 import { hashSync, compareSync } from 'bcryptjs';
