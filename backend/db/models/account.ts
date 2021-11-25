@@ -1,8 +1,9 @@
 'use strict';
 
 import type { Optional } from "sequelize/types";
-import type { AggregateModels } from './utilTypes';
 
+import User from './user';
+import Item from "./item";
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '.';
 
@@ -30,7 +31,7 @@ export default class Account
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
 
-  static associate({ User, Item }: AggregateModels) {
+  static associate() {
     Account.belongsTo(User, { foreignKey: 'user_id' });
     Account.hasMany(Item, { foreignKey: 'account_id' });
   }
