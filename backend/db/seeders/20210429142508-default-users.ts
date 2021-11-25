@@ -4,7 +4,7 @@ import { QueryInterface } from "sequelize/types";
 
 const { hashSync } = require('bcryptjs');
 
-module.exports = {
+export default {
   up: async (queryInterface: QueryInterface) => {
     await queryInterface.bulkInsert('Users', [
       { firstName: 'demo', email: 'demo@website.io', password: hashSync('password') }
