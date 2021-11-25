@@ -1,10 +1,17 @@
-/* eslint-disable no-extend-native */
+interface String {
+  upperCaseFirst: () => string;
+  truncateUntil: (pattern: RegExp) => string;
+};
+
+interface Array<T> {
+  toKeyedObject: (key: string) => object
+};
 
 String.prototype.upperCaseFirst = function () {
   return `${this[0].toUpperCase()}${this.slice(1)}`;
 };
 
-String.prototype.truncateUntil = function (pattern) {
+String.prototype.truncateUntil = function (pattern: RegExp) {
   const validateAbsoluteStart = pattern.toString();
   if (!(validateAbsoluteStart[1] === '^')) {
     pattern = new RegExp(
@@ -22,6 +29,17 @@ String.prototype.truncateUntil = function (pattern) {
   return out;
 };
 
-Array.prototype.toKeyedObject = function (key) {
-  return this.reduce((acc, next) => (acc[next[key]] = next) && acc, {});
+Array.prototype.toKeyedObject = function (key: string) {
+  return this.reduce(
+    (
+      acc: {
+        [key: number]: any
+      },
+      next: {
+        [key: string]: number
+      }
+    ) => {
+      acc[next[key]] = next;
+      return acc;
+    }, {});
 };
