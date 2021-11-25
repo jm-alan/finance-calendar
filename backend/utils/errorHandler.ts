@@ -1,9 +1,11 @@
 import { ExtendedValidationError, RequestError } from '../RequestError';
 import { environment } from '../config';
+import { AuthenticatedRequest } from './types';
+import { NextFunction, Response } from 'express';
 
 const isProduction = environment === 'production';
 
-export default (err, _req, res, _next) => {
+export default (err: Error | RequestError | ExtendedValidationError, _req: AuthenticatedRequest, res: Response, _next: NextFunction) => {
   if (err instanceof RequestError || err instanceof ExtendedValidationError) res.status(err.status);
   else res.status(500);
   console.error(err);
