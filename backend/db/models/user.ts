@@ -1,23 +1,37 @@
 'use strict';
+
+import { Sequelize, AbstractDataType, AbstractDataTypeConstructor, } from "sequelize/types";
+
+export type loginCredentials = {
+  email: string,
+  password: string;
+};
+
+export type signupCredentials = {
+  firstName: string,
+  email: string,
+  password: string;
+};
+
 const { Model, ValidationError, ValidationErrorItem } = require('sequelize');
 const { hashSync, compareSync } = require('bcryptjs');
 
-module.exports = (sequelize, { DataTypes, fn }) => {
+module.exports = (sequelize: Sequelize, { DataTypes, fn }: { DataTypes: AbstractDataType | AbstractDataTypeConstructor, fn: any; }) => {
   class User extends Model {
-    validatePass (password) {
+    validatePass(password: string) {
       return !!password && compareSync(password, this.password);
     }
 
-    async findAccountByPk (id) {
+    async findAccountByPk(id: number) {
       return (await this.getAccounts({ where: { id } }))[0] ?? null;
     }
 
-    get info () {
+    get info() {
       const { id, firstName, email } = this;
       return { id, firstName, email };
     }
 
-    static async LogIn ({ email, password }) {
+    static async LogIn({ email, password }: loginCredentials) {
       const errors = [];
       if (!email) errors.push(new ValidationErrorItem('Please provide an email'));
       if (!password) errors.push(new ValidationErrorItem('Please provide a password'));
@@ -30,14 +44,14 @@ module.exports = (sequelize, { DataTypes, fn }) => {
       return potentialUser;
     }
 
-    static async SignUp ({ firstName, email, password }) {
+    static async SignUp({ firstName, email, password }: signupCredentials) {
       const errors = [];
       if (await User.findOne({ where: { email } })) errors.push(new ValidationErrorItem('An account already exists with that email'));
       if (errors.length) throw new ValidationError('Could not accept identification', errors);
       return await User.create({ firstName, email, password });
     }
 
-    static associate ({ Account, Item }) {
+    static associate({ Account, Item }) {
       User.hasMany(Account, { foreignKey: 'user_id' });
       User.hasMany(Item, { foreignKey: 'user_id' });
     }
@@ -51,7 +65,7 @@ module.exports = (sequelize, { DataTypes, fn }) => {
           args: 'email',
           msg: 'Name cannot be an email'
         },
-        set (val) {
+        set(val) {
           if (!val.match(/[a-zA-Z0-9_]{5,30}/)) {
             const errors = [];
             if (val.length < 5) errors.push(new ValidationErrorItem('Username must be at least 5 characters'));
@@ -73,7 +87,7 @@ module.exports = (sequelize, { DataTypes, fn }) => {
     },
     password: {
       type: DataTypes.STRING,
-      set (val) {
+      set(val) {
         if (!val.match(/^(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[0-9])(?=\S*[!@#$%^&*()`~-])[a-zA-Z0-9!@#$%^&*()`~-]{8,}$/)) {
           const errors = [];
           if (val.length < 8) errors.push(new ValidationErrorItem('Password must be at least 8 characters.'));

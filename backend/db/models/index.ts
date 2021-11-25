@@ -1,7 +1,10 @@
 'use strict';
 
-const Sequelize = require('sequelize');
-const config = require('../../config/database');
+import { Sequelize } from 'sequelize';
+import config from '../../config/database';
+import createUserClass from './user';
+import createAccountClass from './account';
+import createItemClass from './item';
 
 const sequelize = process.env.DATABASE_URL
   ? new Sequelize(process.env.DATABASE_URL, config)
