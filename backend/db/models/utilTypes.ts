@@ -1,4 +1,6 @@
-import { Account, Item, User } from "."
+import User from './user';
+import Account from './account';
+import Item from './item';
 
 export type QueryArg = {
   where: {
@@ -7,7 +9,7 @@ export type QueryArg = {
 }
 
 export type AggregateModels = {
-  User: typeof User,
-  Account: typeof Account,
-  Item: typeof Item
+  User: User,
+  Account: Account,
+  Item: Item
 }
