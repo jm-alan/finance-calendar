@@ -12,7 +12,7 @@ import type {
   HasManyCreateAssociationMixin,
   Optional
 } from 'sequelize/types';
-import type { QueryArg, AggregateModels } from './utilTypes';
+import type { AggregateModels } from './utilTypes';
 
 import { Account } from '.'
 import { Model, ValidationError, ValidationErrorItem } from 'sequelize';
