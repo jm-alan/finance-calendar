@@ -1,40 +1,35 @@
 'use strict';
 
-const { Model } = require('sequelize');
+import type { DataTypes, Sequelize } from "sequelize/types";
+import type { AggregateModels } from './utilTypes';
 
-module.exports = (sequelize, { DataTypes, fn }) => {
+import { Model } from 'sequelize';
+
+export default (sequelize: Sequelize, { BOOLEAN, INTEGER, DECIMAL, STRING, TEXT, DATE }: typeof DataTypes) => {
   class Item extends Model {
-    static associate ({ User, Account }) {
+    static associate({ User, Account }: AggregateModels) {
       Item.belongsTo(User, { foreignKey: 'user_id' });
       Item.belongsTo(Account, { foreignKey: 'account_id' });
     }
   }
 
   Item.init({
-    name: { type: DataTypes.STRING(50), allowNull: false },
-    is_expense: DataTypes.BOOLEAN,
-    description: { type: DataTypes.TEXT, allowNull: false },
-    date_expected: { type: DataTypes.DATE, allowNull: false },
-    is_recurring: DataTypes.BOOLEAN,
-    amount: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
-    category: { type: DataTypes.STRING(50), allowNull: false },
+    name: { type: STRING(50), allowNull: false },
+    is_expense: BOOLEAN,
+    description: { type: TEXT, allowNull: false },
+    date_expected: { type: DATE, allowNull: false },
+    is_recurring: BOOLEAN,
+    amount: { type: DECIMAL(10, 2), allowNull: false },
+    category: { type: STRING(50), allowNull: false },
     user_id: {
-      type: DataTypes.INTEGER,
+      type: INTEGER,
       allowNull: false,
       references: { model: 'Users' }
     },
     account_id: {
-      type: DataTypes.INTEGER,
+      type: INTEGER,
       allowNull: false,
       references: { model: 'Accounts' }
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: fn('NOW')
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: fn('NOW')
     }
   }, { sequelize, modelName: 'Items' });
   return Item;
