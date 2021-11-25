@@ -1,8 +1,20 @@
 'use strict';
 
-import type { DataTypes, Sequelize } from "sequelize/types";
-import type { QueryArg, AggregateModels } from "./utilTypes";
-import {Account} from '.'
+import type {
+  Sequelize,
+  ModelDefined,
+  DataTypes,
+  HasManyGetAssociationsMixin,
+  HasManyAddAssociationMixin,
+  HasManyHasAssociationMixin,
+  Association,
+  HasManyCountAssociationsMixin,
+  HasManyCreateAssociationMixin,
+  Optional
+} from 'sequelize/types';
+import type { QueryArg, AggregateModels } from './utilTypes';
+
+import { Account } from '.'
 import { Model, ValidationError, ValidationErrorItem } from 'sequelize';
 import { hashSync, compareSync } from 'bcryptjs';
 
@@ -17,13 +29,30 @@ export type signupCredentials = {
   password: string;
 };
 
-export default (sequelize: Sequelize, { STRING }: typeof DataTypes) => {
-  class User extends Model {
-    id: number;
-    firstName: string;
-    email: string;
-    password: string;
-    getAccounts: ({}: QueryArg) => Promise<typeof Account[]>;
+interface UserAttributes {
+  id: number;
+  firstName: string;
+  email: string;
+  password: string;
+};
+
+interface UserCreationAttributes extends Optional<UserAttributes, 'id'>{};
+
+export default (sequelize: Sequelize, { INTEGER, STRING }: typeof DataTypes) => {
+  class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
+    public id: number;
+    public firstName: string;
+    public email: string;
+    public password: string;
+
+    public readonly createdAt: Date;
+    public readonly updatedAt: Date;
+
+    public getAccounts: HasManyGetAssociationsMixin<typeof Account>;
+    public addAccount: HasManyAddAssociationMixin<typeof Account, number>;
+    public hasAccount: HasManyHasAssociationMixin<typeof Account, number>;
+    public countAccounts: HasManyCountAssociationsMixin;
+  
     validatePass(password: string) {
       return !!password && compareSync(password, this.password);
     }
@@ -64,6 +93,9 @@ export default (sequelize: Sequelize, { STRING }: typeof DataTypes) => {
   }
 
   User.init({
+    id: {
+      type: INTEGER
+    },
     firstName: {
       type: STRING,
       validate: {
