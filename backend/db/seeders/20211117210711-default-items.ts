@@ -40,7 +40,7 @@ for (let i = 0; i < 1000; i++) {
   });
 }
 
-module.exports = {
+export default {
   up: async (queryInterface: QueryInterface) => {
     await queryInterface.bulkInsert('Items', defaultItems);
   },
