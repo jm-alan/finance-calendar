@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import asyncHandler from 'express-async-handler';
 
+import User from '../../db/models/user';
 import createToken from '../../utils/createToken';
 import restoreUser from '../../utils/restoreUser';
-import { User } from '../../db/models';
 import { environment, jwtConfig } from '../../config';
 import { AuthenticatedRequest } from '../../utils/types';
 

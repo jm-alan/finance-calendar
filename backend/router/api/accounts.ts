@@ -1,18 +1,19 @@
 import { Router } from 'express';
 import asyncHandler from 'express-async-handler';
+import { AuthenticatedRequest } from '../../utils/types';
 import restoreOrReject from '../../utils/restoreOrReject';
 
 const router = Router();
 
-router.get('/', restoreOrReject, asyncHandler(async (req, res) => {
+router.get('/', restoreOrReject, asyncHandler(async (req: AuthenticatedRequest, res) => {
   const { user } = req;
   const accounts = await user.getAccounts();
   res.json({ accounts });
 }));
 
-router.get('/:id(\\d+)/items', restoreOrReject, asyncHandler(async (req, res) => {
+router.get('/:id(\\d+)/items', restoreOrReject, asyncHandler(async (req: AuthenticatedRequest, res) => {
   const { user, params: { id } } = req;
-  const account = await user.findAccountByPk(id);
+  const account = await user.findAccountByPk(+id);
   if (!account) {
     res.status(404).json({
       errors: [
