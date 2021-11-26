@@ -1,4 +1,5 @@
 import { Dispatch } from "redux";
+import csrfetch from "./csrfetch";
 
 // constants
 const GET_ACCOUNTS = 'account/GET_ACCOUNTS';
@@ -34,7 +35,7 @@ type NewAccount = {
 type AccountAction = {
   type: string;
   account?: ExtantAccount;
-  accounts?: ExtantAccount[];
+  accounts?: ExtantAccountCollection;
 };
 
 // actions
@@ -43,13 +44,12 @@ const newAccount = (account: ExtantAccount) => ({ type: CREATE_ACCOUNTS, account
 const deleteAccount = (account: ExtantAccount) => ({ type: CREATE_ACCOUNTS, account });
 
 // thunk actions
-export const getAllAccounts = () => async (dispatch: Dispatch<any>) => {
-  const res = await fetch('/api/accounts/');
-  const { accounts } = await res.json();
+export const getAllAccounts = () => async (dispatch: Dispatch<AccountAction>) => {
+  const { accounts }: { accounts: ExtantAccountCollection; } = await csrfetch.get('/api/accounts/');
   dispatch(getAccounts(accounts));
 };
 
-export const createAccount = (accountObj: NewAccount) => async (dispatch: Dispatch<any>) => {
+export const createAccount = (accountObj: NewAccount) => async (dispatch: Dispatch<AccountAction>) => {
   const { name, balance, historicBalance } = accountObj;
   const res = await fetch('/api/reviews/accounts/', {
     method: 'POST',
@@ -62,7 +62,7 @@ export const createAccount = (accountObj: NewAccount) => async (dispatch: Dispat
   dispatch(newAccount(account));
 };
 
-export const deleteAccountById = (id: number) => async (dispatch: Dispatch<any>) => {
+export const deleteAccountById = (id: number) => async (dispatch: Dispatch<AccountAction>) => {
   const res = await fetch(`/api/accounts/${id}/`, {
     method: 'DELETE',
     headers: {
