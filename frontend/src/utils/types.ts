@@ -1,28 +1,15 @@
-import { JSXElementConstructor } from 'react';
+import type { AccountState } from '../store/account';
+import type { SessionState } from '../store/session';
+import type { CalendarState } from '../store/calendar';
+import type { ErrorState } from '../store/errors';
+import type { ModalState } from '../store/modal';
+import type { UXState } from '../store/UX';
 
 export type State = {
-  session: {
-    user: any,
-    loaded: boolean;
-  };
-  accounts: {
-    all: {
-      [key: number]: any;
-    },
-    loaded: boolean;
-  };
-  calendar: {
-    month: number,
-    year: number;
-  };
-  errors: {
-    current: null | string[];
-  };
-  modal: {
-    Current: null | JSXElementConstructor,
-    mooring: null | HTMLElement;
-  },
-  UX: {
-    modal: boolean;
-  };
+  session: SessionState;
+  accounts: AccountState;
+  calendar: CalendarState;
+  errors: ErrorState;
+  modal: ModalState,
+  UX: UXState;
 };
