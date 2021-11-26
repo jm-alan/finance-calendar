@@ -1,15 +1,6 @@
 const NEXT_MONTH = 'calendar/MONTH/NEXT';
 const PREV_MONTH = 'calendar/MONTH/PREV';
 
-export type CalendarState = {
-  month: number;
-  year: number;
-};
-
-type CalendarAction = {
-  type: string;
-};
-
 export const NextMonth = () => ({
   type: NEXT_MONTH
 });
@@ -18,7 +9,7 @@ export const PrevMonth = () => ({
 });
 
 export default function reducer (
-  state = {
+  state: CalendarState = {
     month: (new Date()).getMonth(),
     year: (new Date()).getFullYear()
   },
