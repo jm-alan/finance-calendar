@@ -27,7 +27,7 @@ declare type csrfetch = {
   ];
   genericErrors: string[];
   dispatch: Dispatch<any> | (() => void);
-  captureDispatch: (dispatch: Dispatch<any>) => void;
+  captureDispatch: (dispatch: Dispatch<ErrorAction>) => void;
   __preFlight: (opts: preflightOpts, method: string) => void;
   __forwardFetch: (opts: preflightOpts, method?: string) => Promise<any>;
   get: (url: string, params?: paramsObj) => Promise<any>;
