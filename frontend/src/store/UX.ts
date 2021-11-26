@@ -1,6 +1,14 @@
 const SHOW_MODAL = 'UX/modal/SHOW';
 const HIDE_MODAL = 'UX/modal/HIDE';
 
+export type UXState = {
+  modal: boolean;
+};
+
+type UXAction = {
+  type: string;
+};
+
 export const ShowModal = () => ({
   type: SHOW_MODAL
 });
@@ -11,7 +19,7 @@ export const HideModal = () => ({
 
 export default function reducer (
   state = { modal: false },
-  { type }
+  { type }: UXAction
 ) {
   switch (type) {
     case SHOW_MODAL:

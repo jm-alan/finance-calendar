@@ -5,18 +5,25 @@ import { HideModal } from '../../store/UX';
 import { ClearErrors } from '../../store/errors';
 
 import './index.css';
+import { FormEvent, ReactChild } from 'react';
+import { State } from '../../utils/types';
 
-export default function Auth ({ onSubmit, children }) {
+type AuthProps = {
+  onSubmit: () => void;
+  children: ReactChild[];
+};
+
+export default function Auth ({ onSubmit, children }: AuthProps) {
   const dispatch = useDispatch();
 
-  const user = useSelector(state => state.session.user);
+  const user = useSelector((state: State) => state.session.user);
 
   if (user) {
     dispatch(TearDown());
     dispatch(HideModal());
   }
 
-  const wrappedSubmit = e => {
+  const wrappedSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(ClearErrors());
     onSubmit();

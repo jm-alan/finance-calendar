@@ -4,12 +4,15 @@ import Day from './Day';
 import { NextMonth, PrevMonth } from '../../store/calendar';
 
 import './index.css';
+import { State } from '../../utils/types';
+
+type DateTuple = [string, number];
 
 export default function Calendar () {
   const dispatch = useDispatch();
 
-  const year = useSelector(state => state.calendar.year);
-  const month = useSelector(state => state.calendar.month);
+  const year = useSelector((state: State) => state.calendar.year);
+  const month = useSelector((state: State) => state.calendar.month);
 
   return (
     <div className='calendar_container'>
@@ -37,7 +40,7 @@ export default function Calendar () {
         <div className='weekday'>Sat</div>
       </div>
       <div className='date_container'>
-        {Object.entries((new Date(year, month)).toEnumeratedMonthObject()).map(([date, weekday], idx) => (
+        {Object.entries((new Date(year, month)).toEnumeratedMonthObject()).map(([date, weekday]: DateTuple, idx: number) => (
           <Day key={idx} date={date} gridColumnStart={weekday + 1} />
         ))}
       </div>

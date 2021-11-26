@@ -1,7 +1,16 @@
 const SET_ERRORS = 'errors/SET';
 const CLEAR_ERRORS = 'errors/CLEAR';
 
-export const SetErrors = current => ({
+export type ErrorState = {
+  current: null | string[];
+};
+
+type ErrorAction = {
+  type: string;
+  current?: string[];
+};
+
+export const SetErrors = (current: string[]) => ({
   type: SET_ERRORS,
   current
 });
@@ -12,7 +21,7 @@ export const ClearErrors = () => ({
 
 export default function reducer (
   state = { current: null },
-  { type, current }
+  { type, current }: ErrorAction
 ) {
   switch (type) {
     case SET_ERRORS:

@@ -1,17 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import { SetModal } from '../../store/modal';
 import { LogOut } from '../../store/session';
 import { ShowModal } from '../../store/UX';
-import './index.css';
-
 import LoginForm from '../Auth/LoginForm';
 import SignupForm from '../Auth/SignupForm';
+import { State } from '../../utils/types';
+
+import './index.css';
 
 export default function NavBar () {
   const dispatch = useDispatch();
 
-  const user = useSelector(state => state.session.user);
+  const user = useSelector((state: State) => state.session.user);
 
   const popLogin = () => {
     dispatch(SetModal(LoginForm));
@@ -40,7 +42,7 @@ export default function NavBar () {
               Log Out
             </button>
           </>
-          )
+        )
         : (
           <div className='button_container'>
             <button className='main_button' onClick={popLogin}>
@@ -50,7 +52,7 @@ export default function NavBar () {
               Sign Up
             </button>
           </div>
-          )}
+        )}
     </nav>
   );
 }
