@@ -7,7 +7,9 @@
     "sequelize": "sequelize",
     "sequelize-cli": "sequelize-cli",
     "start": "nodemon -r sucrase/register ./bin/www",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "seed-all": "ts-node ./db/seeders/index.ts up",
+    "seed-undo": "ts-node ./db/seeders/index.ts down"
   },
   "nodemonConfig": {
     "execMap": {
