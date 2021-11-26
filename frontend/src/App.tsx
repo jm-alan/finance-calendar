@@ -17,7 +17,7 @@ export default function App () {
     dispatch(Load());
   }, [dispatch]);
 
-  return loaded && (
+  return (loaded && (
     <>
       <NavBar />
       <Switch>
@@ -29,6 +29,5 @@ export default function App () {
         </Route>
       </Switch>
     </>
-  );
+  )) || null;
 }
-
