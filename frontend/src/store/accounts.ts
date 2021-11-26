@@ -15,6 +15,15 @@ type ExtantAccount = {
   updatedAt: Date;
 };
 
+type ExtantAccountCollection = {
+  [key: number]: ExtantAccount | null;
+};
+
+export type AccountState = {
+  all: ExtantAccountCollection;
+  loaded: boolean;
+};
+
 type NewAccount = {
   name: string;
   balance: number;
@@ -28,15 +37,8 @@ type AccountAction = {
   accounts?: ExtantAccount[];
 };
 
-export type AccountState = {
-  all: {
-    [key: number]: ExtantAccount;
-  };
-  loaded: boolean;
-};
-
 // actions
-const getAccounts = (accounts: ExtantAccount[]) => ({ type: GET_ACCOUNTS, accounts });
+const getAccounts = (accounts: ExtantAccountCollection) => ({ type: GET_ACCOUNTS, accounts });
 const newAccount = (account: ExtantAccount) => ({ type: CREATE_ACCOUNTS, account });
 const deleteAccount = (account: ExtantAccount) => ({ type: CREATE_ACCOUNTS, account });
 
@@ -73,7 +75,7 @@ export const deleteAccountById = (id: number) => async (dispatch: Dispatch<any>)
 };
 
 // reducer
-export default function reducer (
+export default function reducer(
   state: AccountState = { all: {}, loaded: false },
   { type, account, accounts }: AccountAction
 ) {
