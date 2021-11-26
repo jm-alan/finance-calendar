@@ -26,7 +26,7 @@ declare type csrfetch = {
     reqOpts
   ];
   genericErrors: string[];
-  dispatch: Dispatch<any> | (() => void);
+  dispatch: Dispatch<ErrorAction> | (() => void);
   captureDispatch: (dispatch: Dispatch<ErrorAction>) => void;
   __preFlight: (opts: preflightOpts, method: string) => void;
   __forwardFetch: (opts: preflightOpts, method?: string) => Promise<any>;
