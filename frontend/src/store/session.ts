@@ -3,16 +3,6 @@ import csrfetch from './csrfetch';
 
 const SET_USER = 'session/SET';
 
-export type SessionState = {
-  user: any;
-  loaded: boolean;
-};
-
-type SessionAction = {
-  type: string;
-  user?: any;
-};
-
 const setSession = (user = null) => ({
   type: SET_USER,
   user
