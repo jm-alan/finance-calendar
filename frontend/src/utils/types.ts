@@ -1,3 +1,5 @@
+import { JSXElementConstructor } from 'react';
+
 export type State = {
   session: {
     user: any,
@@ -17,7 +19,7 @@ export type State = {
     current: null | string[];
   };
   modal: {
-    Current: null | JSX.Element,
+    Current: null | JSXElementConstructor,
     mooring: null | HTMLElement;
   },
   UX: {
