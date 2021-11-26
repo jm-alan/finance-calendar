@@ -12,7 +12,7 @@ import type {
 import Item from './item';
 import Account from './account';
 import { sequelize } from '.';
-import { Model, ValidationError, ValidationErrorItem, DataTypes } from 'sequelize';
+import { Model, ValidationError, ValidationErrorItem, DataTypes, fn } from 'sequelize';
 import { hashSync, compareSync } from 'bcryptjs';
 
 export type loginCredentials = {
@@ -31,11 +31,13 @@ interface UserAttributes {
   firstName: string;
   email: string;
   password: string;
+  createdAt: Date,
+  updatedAt: Date
 };
 
-interface UserCreationAttributes extends Optional<UserAttributes, 'id'> { };
+interface UserCreationAttributes extends Optional<UserAttributes, 'id' | 'createdAt' | 'updatedAt'> { };
 
-const { INTEGER, STRING } = DataTypes;
+const { INTEGER, STRING, DATE } = DataTypes;
 
 export default class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
   public id: number;
@@ -138,6 +140,16 @@ User.init({
         throw new ValidationError('Invalid password.', errors);
       } else this.setDataValue('password', hashSync(val));
     }
+  },
+  createdAt: {
+    type: DATE,
+    allowNull: false,
+    defaultValue: fn('NOW')
+  },
+  updatedAt: {
+    type: DATE,
+    allowNull: false,
+    defaultValue: fn('NOW')
   }
 }, {
   sequelize,

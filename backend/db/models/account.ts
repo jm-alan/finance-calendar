@@ -1,10 +1,9 @@
 'use strict';
 
-import type { Optional, HasManyGetAssociationsMixin } from "sequelize/types";
+import { Optional, HasManyGetAssociationsMixin } from "sequelize/types";
 
-import User from './user';
 import Item from "./item";
-import { Model, DataTypes } from 'sequelize';
+import { Model, DataTypes, fn } from 'sequelize';
 import { sequelize } from '.';
 
 interface AccountAttributes {
@@ -13,11 +12,13 @@ interface AccountAttributes {
   balance: number;
   historic_balance: string;
   user_id: number;
+  createdAt: Date,
+  updatedAt: Date
 }
 
-interface AccountCreationAttributes extends Optional<AccountAttributes, 'id'> { };
+interface AccountCreationAttributes extends Optional<AccountAttributes, 'id' | 'createdAt' | 'updatedAt'> { };
 
-const { INTEGER, DECIMAL, STRING, TEXT } = DataTypes;
+const { INTEGER, DECIMAL, STRING, TEXT, DATE } = DataTypes;
 
 export default class Account
   extends Model<AccountAttributes, AccountCreationAttributes>
@@ -54,6 +55,16 @@ Account.init({
     references: {
       model: 'Users'
     }
+  },
+  createdAt: {
+    type: DATE,
+    allowNull: false,
+    defaultValue: fn('NOW')
+  },
+  updatedAt: {
+    type: DATE,
+    allowNull: false,
+    defaultValue: fn('NOW')
   }
 }, {
   sequelize,

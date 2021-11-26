@@ -2,9 +2,7 @@
 
 import type { Optional } from 'sequelize/types';
 
-import User from './user';
-import Account from './account';
-import { Model, DataTypes } from 'sequelize';
+import { Model, DataTypes, fn } from 'sequelize';
 import { sequelize } from '.';
 
 interface ItemAttributes {
@@ -18,9 +16,11 @@ interface ItemAttributes {
   category: string;
   user_id: number;
   account_id: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-interface ItemCreationAttributes extends Optional<ItemAttributes, 'id'> { };
+interface ItemCreationAttributes extends Optional<ItemAttributes, 'id' | 'createdAt' | 'updatedAt'> { };
 
 const { BOOLEAN, INTEGER, DECIMAL, STRING, TEXT, DATE } = DataTypes;
 
@@ -38,6 +38,9 @@ export default class Item
   public category: string;
   public user_id: number;
   public account_id: number;
+  
+  public readonly createdAt: Date;
+  public readonly updatedAt: Date;
 }
 
 Item.init({
@@ -62,5 +65,15 @@ Item.init({
     type: INTEGER,
     allowNull: false,
     references: { model: 'Accounts' }
+  },
+  createdAt: {
+    type: DATE,
+    allowNull: false,
+    defaultValue: fn('NOW')
+  },
+  updatedAt: {
+    type: DATE,
+    allowNull: false,
+    defaultValue: fn('NOW')
   }
 }, { sequelize, modelName: 'Items' });
