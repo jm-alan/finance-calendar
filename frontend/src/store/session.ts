@@ -8,25 +8,25 @@ const setSession = (user = null) => ({
   user
 });
 
-export const Load = () => async (dispatch: Dispatch<any>) => {
+export const Load = () => async (dispatch: Dispatch<SessionAction>) => {
   const { user } = await csrfetch.get('/api/session/');
   csrfetch.captureDispatch(dispatch);
   csrfetch.restoreCSRF();
   dispatch(setSession(user));
 };
 
-export const LogIn = (email: string, password: string) => async (dispatch: Dispatch<any>) => {
+export const LogIn = (email: string, password: string) => async (dispatch: Dispatch<SessionAction>) => {
   const { user } = await csrfetch.post('/api/session/', { email, password });
   dispatch(setSession(user));
 };
 
-export const SignUp = (firstName: string, email: string, password: string) => async (dispatch: Dispatch<any>) => {
+export const SignUp = (firstName: string, email: string, password: string) => async (dispatch: Dispatch<SessionAction>) => {
   const { user } = await csrfetch.post('/api/users/', { firstName, email, password });
   dispatch(setSession(user));
 };
 
-export const LogOut = () => async (dispatch: Dispatch<any>) => {
-  await csrfetch.delete('/api/session/');
+export const LogOut = () => async (dispatch: Dispatch<SessionAction>) => {
+  await csrfetch.destroy('/api/session/');
   dispatch(setSession());
 };
 
