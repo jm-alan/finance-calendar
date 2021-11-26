@@ -16,13 +16,12 @@ import './utils/prototypes';
 
 const store = configureStore();
 
-
 if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.dispatch = store.dispatch;
   window.csrfetch = csrfetch;
   window.findCookie = findCookie;
-}
+};
 
 function Root () {
   const dispatch = useDispatch();
