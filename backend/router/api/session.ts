@@ -1,10 +1,11 @@
 import { Router } from 'express';
 import asyncHandler from 'express-async-handler';
 
+import User from '../../db/models/user';
 import createToken from '../../utils/createToken';
 import restoreUser from '../../utils/restoreUser';
-import { User } from '../../db/models';
 import { environment, jwtConfig } from '../../config';
+import { AuthenticatedRequest } from '../../utils/types';
 
 const router = Router();
 
@@ -21,12 +22,12 @@ router.post('/', asyncHandler(async (req, res) => {
     maxAge: jwtConfig.expiresIn * 1000,
     httpOnly: true,
     secure: isProduction,
-    sameSite: isProduction && 'Lax'
+    sameSite: isProduction
   });
   res.json({ user });
 }));
 
-router.get('/', restoreUser, (req, res) => {
+router.get('/', restoreUser, (req: AuthenticatedRequest, res) => {
   const user = req.user && req.user.info;
   res.json({ user });
 });

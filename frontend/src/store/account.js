@@ -37,7 +37,7 @@ export const deleteAccountById = (id) => async (dispatch) => {
         },
     })
     const data = await res.json();
-    console.log("deleted", data);
+    console.log('deleted', data);
     dispatch(deleteAccount(data))
 }
 

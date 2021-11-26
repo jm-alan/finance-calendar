@@ -3,7 +3,7 @@ import { jwtConfig } from '../config';
 
 const { secret, expiresIn } = jwtConfig;
 
-export default (userId) => sign(
+export default (userId: number) => sign(
   { userId },
   secret,
   { expiresIn }

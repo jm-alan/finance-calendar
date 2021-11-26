@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 const apps = require('../app');
-const db = require('../db/models');
+const { sequelize } = require('../db/models');
+const after = require('../db/models/after').default;
 
 const initApp = async (port, app) => {
   try {
-    await db.sequelize.authenticate();
+    await sequelize.authenticate();
     app.listen(port, () => console.log(`App:${port} UP`));
   } catch (err) {
     console.log('App failed to instantiate.');
@@ -13,9 +14,10 @@ const initApp = async (port, app) => {
   }
 };
 
-const syncDB = async () => await db.sequelize.sync({ alter: true });
+const syncDB = async () => await sequelize.sync({ alter: true });
 
 (async () => {
   for (const port in apps) await initApp(port, apps[port]);
   await syncDB();
+  after();
 })();
