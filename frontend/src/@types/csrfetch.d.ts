@@ -33,6 +33,6 @@ declare type csrfetch = {
   get: (url: string, params?: paramsObj) => Promise<any>;
   post: (url: string, body: bodyObj) => Promise<any>;
   patch: (url: string, body: bodyObj) => Promise<any>;
-  delete: (url: string, body?: bodyObj) => Promise<any>;
+  destroy: (url: string, body?: bodyObj) => Promise<any>;
   restoreCSRF: () => Promise<void>;
 };

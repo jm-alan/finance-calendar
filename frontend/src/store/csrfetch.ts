@@ -61,7 +61,7 @@ const csrfetch: csrfetch = {
     return await this.__forwardFetch({ url, body }, 'PATCH');
   },
 
-  async delete (url, body) {
+  async destroy (url, body) {
     return await this.__forwardFetch({ url, body }, 'DELETE');
   },
 
