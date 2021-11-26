@@ -45,8 +45,8 @@ const deleteAccount = (account: ExtantAccount) => ({ type: CREATE_ACCOUNTS, acco
 // thunk actions
 export const getAllAccounts = () => async (dispatch: Dispatch<any>) => {
   const res = await fetch('/api/accounts/');
-  const data = await res.json();
-  dispatch(getAccounts(data));
+  const { accounts } = await res.json();
+  dispatch(getAccounts(accounts));
 };
 
 export const createAccount = (accountObj: NewAccount) => async (dispatch: Dispatch<any>) => {
