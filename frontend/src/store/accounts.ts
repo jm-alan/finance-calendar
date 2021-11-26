@@ -43,12 +43,13 @@ export const deleteAccountById = (id: number) => async (dispatch: Dispatch<Accou
 };
 
 // reducer
-export default function reducer(
+export default function reducer (
   state: AccountState = { all: {}, loaded: false },
   { type, account, accounts }: AccountAction
-) {
+): AccountState {
   switch (type) {
     case GET_ACCOUNTS:
+      if (!accounts) return state;
       return {
         ...state,
         all: accounts
