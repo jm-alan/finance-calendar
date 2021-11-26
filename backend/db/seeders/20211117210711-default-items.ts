@@ -20,7 +20,9 @@ const makeItem = () => {
     amount: Math.round(Math.random() * 150),
     category: ['Fun', 'Necessities', 'Entertainment', 'Accounts', 'Home'][selector],
     user_id: 1,
-    account_id: Math.round(Math.random() * 3 + 1)
+    account_id: Math.round(Math.random() * 3 + 1),
+    createdAt: new Date(),
+    updatedAt: new Date()
   };
 };
 
@@ -36,7 +38,9 @@ for (let i = 0; i < 1000; i++) {
     amount: Math.round(Math.random() * 100) + 1500,
     category: 'Income',
     user_id: 1,
-    account_id: Math.round(Math.random() * 3 + 1)
+    account_id: Math.round(Math.random() * 3 + 1),
+    createdAt: new Date(),
+    updatedAt: new Date()
   });
 }
 
