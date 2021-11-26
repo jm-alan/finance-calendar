@@ -4,7 +4,8 @@ interface String {
 };
 
 interface Array<T> {
-  toKeyedObject: (key: string) => object
+  toKeyedObject: (key: string) => object;
+  asyncForEach: (callback: (element?: any, index?: number, selfRef?: any[]) => Promise<void>) => Promise<void>;
 };
 
 String.prototype.upperCaseFirst = function () {
@@ -43,3 +44,7 @@ Array.prototype.toKeyedObject = function (key: string) {
       return acc;
     }, {});
 };
+
+Array.prototype.asyncForEach = async function (cb) {
+  for (let i = 0; i < this.length; i++) await cb(this[i], i, this);
+}
