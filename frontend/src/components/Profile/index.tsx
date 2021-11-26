@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 import { getAllAccounts } from '../../store/accounts';
-import { State } from '../../utils/types';
 
 import './index.css';
 

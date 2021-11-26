@@ -1,12 +1,11 @@
+import type { FormEvent, ReactChild } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { TearDown } from '../../store/modal';
 import { HideModal } from '../../store/UX';
-
 import { ClearErrors } from '../../store/errors';
 
 import './index.css';
-import { FormEvent, ReactChild } from 'react';
-import { State } from '../../utils/types';
 
 type AuthProps = {
   onSubmit: () => void;
