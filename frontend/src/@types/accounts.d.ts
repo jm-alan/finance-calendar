@@ -12,7 +12,7 @@ declare type ExtantAccountCollection = {
   [key: number]: ExtantAccount | null;
 };
 
-declare type AccountState = {
+declare interface AccountState {
   all: ExtantAccountCollection;
   loaded: boolean;
 };
