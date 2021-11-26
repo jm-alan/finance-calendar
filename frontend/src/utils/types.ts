@@ -1,4 +1,4 @@
-import type { AccountState } from '../store/account';
+import type { AccountState } from '../store/accounts';
 import type { SessionState } from '../store/session';
 import type { CalendarState } from '../store/calendar';
 import type { ErrorState } from '../store/errors';

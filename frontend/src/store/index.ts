@@ -6,7 +6,7 @@ import UX from './UX';
 import session from './session';
 import errors from './errors';
 import calendar from './calendar';
-import accounts from './account';
+import accounts from './accounts';
 
 const rootReducer = combineReducers({
   session,
@@ -27,6 +27,6 @@ if (process.env.NODE_ENV === 'production') {
   enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 }
 
-export default function configureStore (preloadedState?: {}) {
+export default function configureStore(preloadedState?: {}) {
   return createStore(rootReducer, preloadedState, enhancer);
 }
