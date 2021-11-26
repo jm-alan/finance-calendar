@@ -1,11 +1,11 @@
 interface String {
-  upperCaseFirst: () => string;
-  truncateUntil: (pattern: RegExp) => string;
+  upperCaseFirst (): string;
+  truncateUntil (pattern: RegExp): string;
 };
 
 interface Array<T> {
-  toKeyedObject: (key: string) => object;
-  asyncForEach: (callback: (element?: any, index?: number, selfRef?: any[]) => Promise<void>) => Promise<void>;
+  toKeyedObject (key: string): object;
+  asyncForEach (callback: (element?: any, index?: number, selfRef?: any[]) => Promise<void>): Promise<void>;
 };
 
 String.prototype.upperCaseFirst = function () {
@@ -34,10 +34,10 @@ Array.prototype.toKeyedObject = function (key: string) {
   return this.reduce(
     (
       acc: {
-        [key: number]: any
+        [key: number]: any;
       },
       next: {
-        [key: string]: number
+        [key: string]: number;
       }
     ) => {
       acc[next[key]] = next;
@@ -47,4 +47,4 @@ Array.prototype.toKeyedObject = function (key: string) {
 
 Array.prototype.asyncForEach = async function (cb) {
   for (let i = 0; i < this.length; i++) await cb(this[i], i, this);
-}
+};
