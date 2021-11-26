@@ -1,17 +1,20 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+
 import { getAllAccounts } from '../../store/account';
-import './index.css'
+import { State } from '../../utils/types';
+
+import './index.css';
 
 const Profile = () => {
     const dispatch = useDispatch();
 
-    const accounts = useSelector(state => state.accounts);
-    const user = useSelector(state => state.session.user);
+    const accounts = useSelector((state: State) => state.accounts.all);
+    const user = useSelector((state: State) => state.session.user);
 
-        useEffect(() => {
-            dispatch(getAllAccounts());
-          }, [dispatch]);
+    useEffect(() => {
+        dispatch(getAllAccounts());
+    }, [dispatch]);
 
     return (
         <div className='profile_page_container'>
@@ -29,11 +32,11 @@ const Profile = () => {
                             <h2>{account.name}</h2>
                             <p>${account.balance}</p>
                         </div>
-                    )
+                    );
                 })}
             </div>
         </div>
-    )
+    );
 };
 
 export default Profile;

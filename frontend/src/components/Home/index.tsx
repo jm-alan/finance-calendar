@@ -1,15 +1,18 @@
 import { useSelector } from 'react-redux';
+
 import Iphone from '../Iphone';
 import Calendar from '../Calendar';
+import { State } from '../../utils/types';
+
 import './index.css';
 
-export default function Home ({ asdf }) {
-  const user = useSelector(state => state.session.user);
+export default function Home () {
+  const user = useSelector((state: State) => state.session.user);
 
   return user
     ? (
       <Calendar />
-      )
+    )
     : (
       <div>
         <h1>
@@ -20,5 +23,5 @@ export default function Home ({ asdf }) {
           <Iphone />
         </div>
       </div>
-      );
+    );
 }

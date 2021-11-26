@@ -21,7 +21,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.dispatch = store.dispatch;
   window.csrfetch = csrfetch;
   window.findCookie = findCookie;
-}
+};
 
 function Root () {
   const dispatch = useDispatch();

@@ -1,4 +1,10 @@
-export default function AuthInput ({ type, onChangeText, value }) {
+type AuthInputProps = {
+  type: string;
+  onChangeText: (value: string) => void;
+  value: string;
+};
+
+export default function AuthInput ({ type, onChangeText, value }: AuthInputProps) {
   return (
     <label>
       {(() => {

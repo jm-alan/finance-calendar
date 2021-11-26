@@ -1,4 +1,9 @@
-export default function Day ({ date, gridColumnStart }) {
+type DayProps = {
+  date: string;
+  gridColumnStart: number;
+};
+
+export default function Day ({ date, gridColumnStart }: DayProps) {
   return (
     <div
       className='calendar_day'
