@@ -1,42 +1,10 @@
-import { Dispatch } from "redux";
+import { Dispatch } from 'redux';
 import csrfetch from "./csrfetch";
 
 // constants
 const GET_ACCOUNTS = 'account/GET_ACCOUNTS';
 const CREATE_ACCOUNTS = 'accounts/CREATE_ACCOUNTS';
 const DELETE_ACCOUNTS = 'accounts/DELETE_ACCOUNTS';
-
-type ExtantAccount = {
-  id: number;
-  name: string;
-  balance: number;
-  historic_balance: string;
-  user_id: number;
-  createdAt: Date,
-  updatedAt: Date;
-};
-
-type ExtantAccountCollection = {
-  [key: number]: ExtantAccount | null;
-};
-
-export type AccountState = {
-  all: ExtantAccountCollection;
-  loaded: boolean;
-};
-
-type NewAccount = {
-  name: string;
-  balance: number;
-  historicBalance: string;
-  user_id: number;
-};
-
-type AccountAction = {
-  type: string;
-  account?: ExtantAccount;
-  accounts?: ExtantAccountCollection;
-};
 
 // actions
 const getAccounts = (accounts: ExtantAccountCollection) => ({ type: GET_ACCOUNTS, accounts });
