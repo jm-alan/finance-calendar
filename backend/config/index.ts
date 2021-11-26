@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 import { resolve } from 'path';
-if (process.env.NODE_ENV !== 'production') config({ path: resolve('.env') });
+if (process.env.NODE_ENV !== 'production') config({ path: resolve(__dirname, '..', '.env') });
 
 export const {
   PORTS,
