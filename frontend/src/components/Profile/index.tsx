@@ -26,14 +26,12 @@ const Profile = () => {
       <div className='accounts_container'>
         <h1>Accounts Summary</h1>
         { console.log(accounts) }
-        { Object.values(accounts).map(account => {
-          return (
-            <div>
-              <h2>{ account.name }</h2>
-              <p>${ account.balance }</p>
-            </div>
-          );
-        }) }
+        { Object.values(accounts).map(account => account && (
+          <div>
+            <h2>{ account.name }</h2>
+            <p>${ account.balance }</p>
+          </div>
+        )) }
       </div>
     </div>
   );
