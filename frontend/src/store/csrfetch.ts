@@ -4,46 +4,7 @@ import type { Dispatch } from 'redux';
 import findCookie from '../utils/findCookie';
 import { SetErrors } from './errors';
 
-type preflightOpts = {
-  url: string;
-  params?: any;
-  body?: any;
-};
-
-type reqOpts = {
-  headers: {
-    'Content-Type': string;
-    'XSRF-Token'?: string;
-  };
-  body: any;
-  method: string;
-};
-
-type paramsObj = {
-  [key: string]: any;
-};
-type bodyObj = {
-  [key: string]: any;
-};
-
-export type csrfFetch = {
-  options: [
-    string,
-    reqOpts
-  ];
-  genericErrors: string[];
-  dispatch: Dispatch<any> | (() => void);
-  captureDispatch: (dispatch: Dispatch<any>) => void;
-  __preFlight: (opts: preflightOpts, method: string) => void;
-  __forwardFetch: (opts: preflightOpts, method?: string) => Promise<any>;
-  get: (url: string, params?: paramsObj) => Promise<any>;
-  post: (url: string, body: bodyObj) => Promise<any>;
-  patch: (url: string, body: bodyObj) => Promise<any>;
-  delete: (url: string, body?: bodyObj) => Promise<any>;
-  restoreCSRF: () => Promise<void>;
-};
-
-const csrfetch: csrfFetch = {
+const csrfetch: csrfetch = {
   dispatch: () => {},
 
   options: [
@@ -59,7 +20,7 @@ const csrfetch: csrfFetch = {
 
   genericErrors: ['Sorry, something went wrong. Please refresh the page and try again.'],
 
-  captureDispatch (dispatch: Dispatch<any>) {
+  captureDispatch (dispatch: Dispatch<ErrorAction>) {
     this.dispatch = dispatch;
   },
 
