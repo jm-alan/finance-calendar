@@ -4,17 +4,6 @@ const SET_MODAL = 'modal/CURRENT';
 const TEARDOWN = 'modal/TEARDOWN';
 const MOORING = 'modal/MOORING';
 
-export type ModalState = {
-  Current: null | JSXElementConstructor<any>;
-  mooring: null | HTMLElement;
-};
-
-type ModalAction = {
-  type: string;
-  Current?: JSXElementConstructor<any>;
-  mooring?: HTMLElement | null;
-};
-
 export const SetModal = (Current: JSXElementConstructor<any>) => ({
   type: SET_MODAL,
   Current
