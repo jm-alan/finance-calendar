@@ -1,24 +1,26 @@
 export type State = {
   session: {
     user: any,
-    loaded: boolean
+    loaded: boolean;
   };
   accounts: {
     all: {
-      [key: number]: any
+      [key: number]: any;
     },
-    loaded: boolean
+    loaded: boolean;
   };
   calendar: {
     month: number,
-    year: number
+    year: number;
   };
-  errors: null | string[];
+  errors: {
+    current: null | string[];
+  };
   modal: {
     Current: null | JSX.Element,
-    mooring: null | HTMLElement
+    mooring: null | HTMLElement;
   },
   UX: {
-    modal: boolean
-  }
-}
+    modal: boolean;
+  };
+};
