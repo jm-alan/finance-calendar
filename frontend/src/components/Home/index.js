@@ -3,7 +3,7 @@ import Iphone from '../Iphone';
 import Calendar from '../Calendar';
 import './index.css';
 
-export default function Home ({ asdf }) {
+export default function Home () {
   const user = useSelector(state => state.session.user);
 
   return user
