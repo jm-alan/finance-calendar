@@ -26,7 +26,7 @@ declare type NewAccount = {
 };
 
 declare type AccountAction = {
-  type: string;
+  type: 'account/GET_ACCOUNTS' | 'accounts/CREATE_ACCOUNTS' | 'accounts/DELETE_ACCOUNT' | 'accounts/SELECT' | 'accounts/DESELECT';
   id?: number;
   account?: ExtantAccount;
   accounts?: ExtantAccountCollection;
