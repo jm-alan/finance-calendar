@@ -24,7 +24,7 @@ declare type NewItem = {
 };
 
 declare type ExtantItemCollection = {
-  [key: number]: ExtantItem | null;
+  [key: number | string]: ExtantItem | null;
 };
 
 declare type ItemState = {
