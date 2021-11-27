@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetItemsByDate } from '../../store/items';
+import { GetItemsByDate, RemoveItemsByDate } from '../../store/items';
 
 type DayProps = {
   date: string;
@@ -15,6 +15,9 @@ export default function Day ({ date, gridColumnStart }: DayProps) {
   useEffect(() => {
     const accountId = selectedAccount ? selectedAccount.id : 0;
     dispatch(GetItemsByDate(accountId, date));
+    return () => {
+      dispatch(RemoveItemsByDate(date));
+    };
   }, [dispatch, date, selectedAccount]);
 
   return (
