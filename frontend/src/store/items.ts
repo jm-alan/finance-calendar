@@ -92,7 +92,8 @@ export default function reducer (
         ...state,
         byDate: {
           ...state.byDate
-        }
+        },
+        lock: state.lock - 1
       };
     case CREATE_ITEM:
       if (!item) return state;
