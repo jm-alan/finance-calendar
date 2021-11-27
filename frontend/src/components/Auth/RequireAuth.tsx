@@ -1,9 +1,8 @@
-import { ReactChild } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 
 type RequireAuthProps = {
-  children: ReactChild[];
+  children: JSX.Element;
 };
 
 export default function RequireAuth ({ children }: RequireAuthProps) {
