@@ -51,11 +51,49 @@
   height: 50px;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
   padding: 0px 100px;
 }
 
 .calendar_controls button {
   margin-left: 10px;
   width: 50px;
+}
+
+.account_selector-position-lock {
+  cursor: pointer;
+  z-index: 999;
+  height: 30px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.calendar_controls .accounts_list {
+  border-top: 1px solid var(--root-relative-seafoam);
+}
+
+.calendar_controls .account_selector {
+  border-radius: 5px;
+  position: relative;
+  background-color: white;
+  border: 1px solid black;
+  overflow: hidden;
+  width: 400px;
+  transition:
+    height 0.3s;
+}
+
+.selected_account, .account_selectable {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.calendar_controls .account_selector .account_selectable:hover {
+  background-color: var(--root-background-blue);
+  color: white;
 }
