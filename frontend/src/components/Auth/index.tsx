@@ -1,8 +1,5 @@
 import type { FormEvent, ReactChild } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { TearDown } from '../../store/modal';
-import { HideModal } from '../../store/UX';
+import { useDispatch } from 'react-redux';
 import { ClearErrors } from '../../store/errors';
 
 import './index.css';
@@ -14,13 +11,6 @@ type AuthProps = {
 
 export default function Auth ({ onSubmit, children }: AuthProps) {
   const dispatch = useDispatch();
-
-  const user = useSelector((state: State) => state.session.user);
-
-  if (user) {
-    dispatch(TearDown());
-    dispatch(HideModal());
-  }
 
   const wrappedSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
