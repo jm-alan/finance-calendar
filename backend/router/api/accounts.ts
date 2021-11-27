@@ -83,4 +83,26 @@ router.patch(
   })
 );
 
+router.delete(
+  '/:accountId(\\d+)/items/:itemId(\\d+)/',
+  restoreOrReject,
+  asyncHandler(async (req: AuthenticatedRequest, res) => {
+    const { user, params: { accountId, itemId } } = req;
+    const account = await user.findAccountByPk(+accountId);
+    if (!account) return res.status(404).json({
+      errors: [
+        'An account with that ID belonging to this user was not found in the database.'
+      ]
+    });
+    const item = await account.findItemByPk(+itemId);
+    if (!item) return res.status(404).json({
+      errors: [
+        'An item with that ID belonging to this account was not found in the database.'
+      ]
+    });
+    await item.destroy();
+    res.sendStatus(200);
+  })
+);
+
 export default router;
