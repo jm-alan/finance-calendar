@@ -35,7 +35,7 @@ router.get(
 );
 
 router.get(
-  '/:id(\\d+)/items/:month(\\d+)/:day(\\d+)/:year(\\d+)',
+  '/:id(\\d+)/items/:month(\\d+)/:day(\\d+)/:year(\\d+)/',
   restoreOrReject,
   asyncHandler(async (req: AuthenticatedRequest, res) => {
     const { user, params: { id, month, day, year } } = req;

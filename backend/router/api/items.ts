@@ -17,4 +17,14 @@ router.get(
   })
 );
 
+router.get(
+  '/:month(\\d+)/:day(\\d+)/:year(\\d+)/',
+  restoreOrReject,
+  asyncHandler(async (req: AuthenticatedRequest, res) => {
+    const { user, params: { month, day, year } } = req;
+    const items = (await user.getItems({ where: { date_expected: `${month}/${day}/${year}` } })).toKeyedObject('id');
+    res.json({ items });
+  })
+);
+
 export default router;
