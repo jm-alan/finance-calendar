@@ -1,9 +1,19 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { GetItemsByDate } from '../../store/items';
+
 type DayProps = {
   date: string;
   gridColumnStart: number;
 };
 
 export default function Day ({ date, gridColumnStart }: DayProps) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(GetItemsByDate(date));
+  }, [dispatch]);
+
   return (
     <div
       className='calendar_day'
