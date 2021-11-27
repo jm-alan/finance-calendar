@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { GetItemsByDate } from '../../store/items';
 
 type DayProps = {
@@ -10,8 +10,11 @@ type DayProps = {
 export default function Day ({ date, gridColumnStart }: DayProps) {
   const dispatch = useDispatch();
 
+  const selectedAccount = useSelector((state: State) => state.accounts.selected);
+
   useEffect(() => {
-    dispatch(GetItemsByDate(date));
+    const accountId = selectedAccount ? selectedAccount.id : 0;
+    dispatch(GetItemsByDate(accountId, date));
   }, [dispatch]);
 
   return (
