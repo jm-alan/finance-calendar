@@ -5,7 +5,8 @@ const GET_ALL_ITEMS = 'items/ALL';
 const CREATE_ITEM = 'items/CREATE';
 const UPDATE_ITEM = 'items/UPDATE';
 const DELETE_ITEM = 'items/DELETE';
-const APPEND_ITEM_BY_DATE = 'items/BY_DATE';
+const APPEND_ITEM_BY_DATE = 'items/APPEND_BY_DATE';
+const REMOVE_ITEM_BY_DATE = 'items/REMOVE_BY_DATE';
 
 const loadItems = (items: ExtantItemCollection): ItemAction => ({
   type: GET_ALL_ITEMS,
@@ -30,6 +31,11 @@ const deleteItem = (id: number): ItemAction => ({
 const appendItemsByDate = (items: ExtantItemCollection, date: string): ItemAction => ({
   type: APPEND_ITEM_BY_DATE,
   items,
+  date
+});
+
+export const RemoveItemsByDate = (date: string): ItemAction => ({
+  type: REMOVE_ITEM_BY_DATE,
   date
 });
 
@@ -78,6 +84,15 @@ export default function reducer (
           [date]: items
         },
         lock: state.lock + 1
+      };
+    case REMOVE_ITEM_BY_DATE:
+      if (!date) return state;
+      delete state.byDate[date];
+      return {
+        ...state,
+        byDate: {
+          ...state.byDate
+        }
       };
     case CREATE_ITEM:
       if (!item) return state;
