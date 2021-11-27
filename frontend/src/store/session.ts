@@ -1,5 +1,7 @@
 import { Dispatch } from 'redux';
 import csrfetch from './csrfetch';
+import { TearDown } from './modal';
+import { HideModal } from './UX';
 
 const SET_USER = 'session/SET';
 
@@ -18,6 +20,8 @@ export const Load = () => async (dispatch: Dispatch<SessionAction>) => {
 export const LogIn = (email: string, password: string) => async (dispatch: Dispatch<SessionAction>) => {
   const { user } = await csrfetch.post('/api/session/', { email, password });
   dispatch(setSession(user));
+  dispatch(HideModal());
+  dispatch(TearDown());
 };
 
 export const SignUp = (firstName: string, email: string, password: string) => async (dispatch: Dispatch<SessionAction>) => {
