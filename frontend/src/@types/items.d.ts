@@ -37,4 +37,5 @@ declare type ItemAction = {
   item?: ExtantItem;
   items?: ExtantItemCollection;
   id?: number;
+  date?: string;
 };
