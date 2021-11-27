@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
+import RequireAuth from './components/Auth/RequireAuth';
 
-import type { State } from './utils/types';
 import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Profile from './components/Profile';
@@ -24,9 +24,11 @@ export default function App () {
         <Route exact path='/'>
           <Home />
         </Route>
-        <Route path='/users/me/'>
-          <Profile />
-        </Route>
+        <RequireAuth>
+          <Route path='/users/me/'>
+            <Profile />
+          </Route>
+        </RequireAuth>
       </Switch>
     </>
   )) || null;

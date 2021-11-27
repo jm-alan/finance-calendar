@@ -4,8 +4,6 @@ export type EnumeratedmonthObject = {
   [key: string]: number;
 };
 
-console.log('=====================================RUNNING=====================================');
-
 Date.prototype.toEnumeratedMonthObject = function () {
   const origDate = this.getDate();
   const monthObj: EnumeratedmonthObject = {};

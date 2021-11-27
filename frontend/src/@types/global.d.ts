@@ -13,6 +13,15 @@ declare global {
   interface Date {
     toEnumeratedMonthObject (): EnumeratedmonthObject;
   };
+
+  type State = {
+    session: SessionState;
+    UX: UXState;
+    modal: ModalState;
+    errors: ErrorState;
+    calendar: CalendarState;
+    accounts: AccountState;
+  };
 }
 
 export default {};

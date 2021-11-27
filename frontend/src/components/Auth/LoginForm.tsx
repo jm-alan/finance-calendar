@@ -7,20 +7,19 @@ import AuthInput from './AuthInput';
 export default function LoginForm () {
   const dispatch = useDispatch();
 
-  const [identification, setIdentification] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const onSubmit = () => {
-    console.log('login attempted');
-    dispatch(LogIn(identification, password));
+    dispatch(LogIn(email, password));
   };
 
   return (
     <Auth onSubmit={onSubmit}>
       <AuthInput
         type='email'
-        onChangeText={setIdentification}
-        value={identification}
+        onChangeText={setEmail}
+        value={email}
       />
       <AuthInput
         type='password'

@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 
 import Iphone from '../Iphone';
 import Calendar from '../Calendar';
-import { State } from '../../utils/types';
 
 import './index.css';
 

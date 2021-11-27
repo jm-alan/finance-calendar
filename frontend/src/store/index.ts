@@ -6,7 +6,7 @@ import UX from './UX';
 import session from './session';
 import errors from './errors';
 import calendar from './calendar';
-import accounts from './account';
+import accounts from './accounts';
 
 const rootReducer = combineReducers({
   session,

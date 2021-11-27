@@ -1,16 +1,7 @@
 const SET_ERRORS = 'errors/SET';
 const CLEAR_ERRORS = 'errors/CLEAR';
 
-export type ErrorState = {
-  current: null | string[];
-};
-
-type ErrorAction = {
-  type: string;
-  current?: string[];
-};
-
-export const SetErrors = (current: string[]) => ({
+export const SetErrors = (current: string[] | unknown) => ({
   type: SET_ERRORS,
   current
 });

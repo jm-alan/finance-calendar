@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ClearErrors } from '../../store/errors';
-import { State } from '../../utils/types';
 
 import './index.css';
 

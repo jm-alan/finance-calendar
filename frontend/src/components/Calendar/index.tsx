@@ -4,7 +4,6 @@ import Day from './Day';
 import { NextMonth, PrevMonth } from '../../store/calendar';
 
 import './index.css';
-import { State } from '../../utils/types';
 
 type DateTuple = [string, number];
 
