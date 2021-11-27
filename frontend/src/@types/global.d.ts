@@ -1,12 +1,12 @@
 import type { Dispatch } from 'redux';
-import type { csrfFetch } from '../store/csrfetch';
+import type { CsrfFetch } from '../store/csrfetch';
 import type { EnumeratedmonthObject } from '../utils/prototypes';
 
 declare global {
   interface Window {
     store: any;
     dispatch: Dispatch<any>;
-    csrfetch: csrfFetch;
+    csrfetch: CsrfFetch;
     findCookie (cookie: string): string;
   };
 
