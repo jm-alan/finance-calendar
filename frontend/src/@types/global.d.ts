@@ -1,6 +1,6 @@
 import type { Dispatch } from 'redux';
 import type { CsrfFetch } from '../store/csrfetch';
-import type { EnumeratedmonthObject } from '../utils/prototypes';
+import type { EnumeratedMonthObject } from '../utils/prototypes';
 
 declare global {
   interface Window {
@@ -11,7 +11,7 @@ declare global {
   };
 
   interface Date {
-    toEnumeratedMonthObject (): EnumeratedmonthObject;
+    toEnumeratedMonthObject (): EnumeratedMonthObject;
   };
 
   type State = {
