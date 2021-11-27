@@ -4,5 +4,5 @@ declare type ErrorState = {
 
 declare type ErrorAction = {
   type: string;
-  current?: string[];
+  current?: string[] | unknown;
 };
