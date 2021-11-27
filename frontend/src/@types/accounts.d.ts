@@ -9,7 +9,7 @@ declare type ExtantAccount = {
 };
 
 declare type ExtantAccountCollection = {
-  [key: number]: ExtantAccount | null;
+  [key: number]: ExtantAccount;
 };
 
 declare type AccountState = {
