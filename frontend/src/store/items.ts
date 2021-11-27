@@ -38,8 +38,8 @@ export const GetItems = (accountId: number) => async (dispatch: Dispatch<ItemAct
   dispatch(loadItems(items));
 };
 
-export const GetItemsByDate = (date: string) => async (dispatch: Dispatch<ItemAction>) => {
-  const { items } = await csrfetch.get(`/api/items/${date}/`);
+export const GetItemsByDate = (accountId: number, date: string) => async (dispatch: Dispatch<ItemAction>) => {
+  const { items } = await (accountId ? csrfetch.get(`/api/${accountId}/items/${date}/`) : csrfetch.get(`/api/items/${date}/`));
   dispatch(appendItemsByDate(items, date));
 };
 
