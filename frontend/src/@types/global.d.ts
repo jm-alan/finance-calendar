@@ -21,6 +21,7 @@ declare global {
     errors: ErrorState;
     calendar: CalendarState;
     accounts: AccountState;
+    items: ItemState;
   };
 }
 
