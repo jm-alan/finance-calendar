@@ -38,7 +38,7 @@ declare type ItemState = {
 };
 
 declare type ItemAction = {
-  type: 'items/ALL' | 'items/CREATE' | 'items/UPDATE' | 'items/DELETE' | 'items/BY_DATE';
+  type: 'items/ALL' | 'items/CREATE' | 'items/UPDATE' | 'items/DELETE' | 'items/APPEND_BY_DATE' | 'items/REMOVE_BY_DATE';
   item?: ExtantItem;
   items?: ExtantItemCollection;
   id?: number;
