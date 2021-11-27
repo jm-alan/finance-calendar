@@ -115,11 +115,11 @@ export default function reducer (
       };
     case DELETE_ITEM:
       if (!id) return state;
+      delete state.all[id];
       return {
         ...state,
         all: {
           ...state.all,
-          [id]: null
         }
       };
     default:
