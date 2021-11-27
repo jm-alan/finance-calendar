@@ -4,7 +4,8 @@ import csrfetch from "./csrfetch";
 // constants
 const GET_ACCOUNTS = 'account/GET_ACCOUNTS';
 const CREATE_ACCOUNTS = 'accounts/CREATE_ACCOUNTS';
-const DELETE_ACCOUNTS = 'accounts/DELETE_ACCOUNTS';
+const DELETE_ACCOUNT = 'accounts/DELETE_ACCOUNT';
+const SELECT_ACCOUNT = 'accounts/SELECT';
 
 // actions
 const getAccounts = (accounts: ExtantAccountCollection) => ({ type: GET_ACCOUNTS, accounts });
@@ -44,8 +45,8 @@ export const deleteAccountById = (id: number) => async (dispatch: Dispatch<Accou
 
 // reducer
 export default function reducer (
-  state: AccountState = { all: {}, loaded: false },
-  { type, account, accounts }: AccountAction
+  state: AccountState = { all: {}, loaded: false, selected: null },
+  { type, account, accounts, id }: AccountAction
 ): AccountState {
   switch (type) {
     case GET_ACCOUNTS:
@@ -63,7 +64,7 @@ export default function reducer (
           [account.id]: account
         }
       };
-    case DELETE_ACCOUNTS:
+    case DELETE_ACCOUNT:
       if (!account) return state;
       return {
         ...state,

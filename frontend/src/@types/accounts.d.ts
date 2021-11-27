@@ -27,6 +27,7 @@ declare type NewAccount = {
 
 declare type AccountAction = {
   type: string;
+  id?: number;
   account?: ExtantAccount;
   accounts?: ExtantAccountCollection;
 };
