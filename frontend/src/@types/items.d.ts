@@ -29,11 +29,11 @@ declare type ExtantItemCollection = {
 
 declare type ItemState = {
   all: ItemCollection;
-  loaded: boolean;
+  lock: number;
 };
 
 declare type ItemAction = {
-  type: 'items/ALL' | 'items/CREATE' | 'items/UPDATE' | 'items/DELETE';
+  type: 'items/ALL' | 'items/CREATE' | 'items/UPDATE' | 'items/DELETE' | 'items/BY_DATE';
   item?: ExtantItem;
   items?: ExtantItemCollection;
   id?: number;
