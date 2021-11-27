@@ -15,7 +15,7 @@ declare type ExtantAccountCollection = {
 declare type AccountState = {
   all: ExtantAccountCollection;
   loaded: boolean;
-  selected: ExtantAccount;
+  selected: ExtantAccount | null;
 };
 
 declare type NewAccount = {
