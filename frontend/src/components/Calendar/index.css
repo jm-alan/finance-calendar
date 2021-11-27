@@ -1,5 +1,5 @@
 .calendar_container {
-  height: calc(var(--below-navbar) - 50px);
+  height: var(--below-navbar);
 }
 
 .weekday_container {
