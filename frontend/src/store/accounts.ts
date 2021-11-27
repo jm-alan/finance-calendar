@@ -8,9 +8,22 @@ const DELETE_ACCOUNT = 'accounts/DELETE_ACCOUNT';
 const SELECT_ACCOUNT = 'accounts/SELECT';
 
 // actions
-const getAccounts = (accounts: ExtantAccountCollection) => ({ type: GET_ACCOUNTS, accounts });
-const newAccount = (account: ExtantAccount) => ({ type: CREATE_ACCOUNTS, account });
-const deleteAccount = (account: ExtantAccount) => ({ type: CREATE_ACCOUNTS, account });
+const getAccounts = (accounts: ExtantAccountCollection): AccountAction => ({
+  type: GET_ACCOUNTS,
+  accounts
+});
+const newAccount = (account: ExtantAccount): AccountAction => ({
+  type: CREATE_ACCOUNTS,
+  account
+});
+const deleteAccount = (account: ExtantAccount): AccountAction => ({
+  type: CREATE_ACCOUNTS,
+  account
+});
+export const SelectAccount = (id: number): AccountAction => ({
+  type: SELECT_ACCOUNT,
+  id
+});
 
 // thunk actions
 export const getAllAccounts = () => async (dispatch: Dispatch<AccountAction>) => {
