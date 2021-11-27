@@ -7,6 +7,7 @@ import session from './session';
 import errors from './errors';
 import calendar from './calendar';
 import accounts from './accounts';
+import items from './items';
 
 const rootReducer = combineReducers({
   session,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   modal,
   errors,
   calendar,
-  accounts
+  accounts,
+  items
 });
 
 let enhancer: StoreEnhancer;
