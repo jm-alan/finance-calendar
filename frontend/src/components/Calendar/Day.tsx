@@ -15,7 +15,7 @@ export default function Day ({ date, gridColumnStart }: DayProps) {
   useEffect(() => {
     const accountId = selectedAccount ? selectedAccount.id : 0;
     dispatch(GetItemsByDate(accountId, date));
-  }, [dispatch]);
+  }, [dispatch, date, selectedAccount]);
 
   return (
     <div
