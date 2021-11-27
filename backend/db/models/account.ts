@@ -30,6 +30,7 @@ export default class Account
   public user_id: number;
 
   public getItems: HasManyGetAssociationsMixin<Item>;
+  public createItem: HasManyCreateAssociationMixin<Item>;
 
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
