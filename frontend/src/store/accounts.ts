@@ -78,12 +78,12 @@ export default function reducer (
         }
       };
     case DELETE_ACCOUNT:
-      if (!account) return state;
+      if (!id) return state;
+      delete state.all[id];
       return {
         ...state,
         all: {
-          ...state.all,
-          [account.id]: null
+          ...state.all
         }
       };
     default:
