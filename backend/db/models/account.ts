@@ -1,6 +1,10 @@
 'use strict';
 
-import { Optional, HasManyGetAssociationsMixin } from "sequelize/types";
+import {
+  Optional,
+  HasManyGetAssociationsMixin,
+  HasManyCreateAssociationMixin
+} from "sequelize/types";
 
 import Item from "./item";
 import { Model, DataTypes, fn } from 'sequelize';
@@ -13,10 +17,10 @@ interface AccountAttributes {
   historic_balance: string;
   user_id: number;
   createdAt: Date,
-  updatedAt: Date
+  updatedAt: Date;
 }
 
-interface AccountCreationAttributes extends Optional<AccountAttributes, 'id' | 'createdAt' | 'updatedAt'> { };
+interface AccountCreationAttributes extends Optional<AccountAttributes, 'id' | 'createdAt' | 'updatedAt'> {};
 
 const { INTEGER, DECIMAL, STRING, TEXT, DATE } = DataTypes;
 
@@ -34,6 +38,10 @@ export default class Account
 
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
+
+  async findItemByPk (id: number): Promise<Item> {
+    return (await this.getItems({ where: { id } }))[0] ?? null;
+  }
 }
 
 Account.init({
