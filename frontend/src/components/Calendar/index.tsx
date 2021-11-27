@@ -5,16 +5,18 @@ import Controls from './Controls';
 
 import './index.css';
 
-type DateTuple = [string, number];
 
 export default function Calendar () {
 
   const year = useSelector((state: State) => state.calendar.year);
   const month = useSelector((state: State) => state.calendar.month);
+  const literalMonth = useSelector((state: State) => state.calendar.literalMonth);
 
   return (
     <div className='calendar_container'>
-      <div className=''
+      <div className='calendar_header'>
+        {literalMonth} {year}
+      </div>
       <Controls />
       <div className='weekday_container'>
         <div className='weekday'>Sun</div>
@@ -26,7 +28,7 @@ export default function Calendar () {
         <div className='weekday'>Sat</div>
       </div>
       <div className='date_container'>
-        {Object.entries((new Date(year, month)).toEnumeratedMonthObject()).map(([date, weekday]: DateTuple, idx: number) => (
+        {Object.entries((new Date(year, month)).toEnumeratedMonthObject()).map(([date, weekday], idx) => (
           <Day key={idx} date={date} gridColumnStart={weekday + 1} />
         ))}
       </div>
