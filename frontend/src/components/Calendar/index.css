@@ -8,7 +8,7 @@
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(1, 30px);
   margin: 0px 100px;
-  margin-top: 20px;
+  height: 30px;
 }
 
 .weekday {
