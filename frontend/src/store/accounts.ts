@@ -90,6 +90,17 @@ export default function reducer (
           ...state.all
         }
       };
+    case SELECT_ACCOUNT:
+      if (!id) return state;
+      return {
+        ...state,
+        selected: state.all[id]
+      };
+    case DESELECT_ACCOUNT:
+      return {
+        ...state,
+        selected: null
+      };
     default:
       return state;
   }
