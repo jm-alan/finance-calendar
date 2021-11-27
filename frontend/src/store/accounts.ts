@@ -6,6 +6,7 @@ const GET_ACCOUNTS = 'account/GET_ACCOUNTS';
 const CREATE_ACCOUNTS = 'accounts/CREATE_ACCOUNTS';
 const DELETE_ACCOUNT = 'accounts/DELETE_ACCOUNT';
 const SELECT_ACCOUNT = 'accounts/SELECT';
+const DESELECT_ACCOUNT = 'accounts/DESELECT';
 
 // actions
 const getAccounts = (accounts: ExtantAccountCollection): AccountAction => ({
@@ -23,6 +24,9 @@ const deleteAccount = (account: ExtantAccount): AccountAction => ({
 export const SelectAccount = (id: number): AccountAction => ({
   type: SELECT_ACCOUNT,
   id
+});
+export const DeselectAccount = (): AccountAction => ({
+  type: DESELECT_ACCOUNT
 });
 
 // thunk actions
