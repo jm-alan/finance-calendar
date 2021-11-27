@@ -24,7 +24,7 @@ declare type NewItem = {
 };
 
 declare type ExtantItemCollection = {
-  [key: number]: ExtantItem | null;
+  [key: number]: ExtantItem;
 };
 
 declare type DatedItemCollection = {
