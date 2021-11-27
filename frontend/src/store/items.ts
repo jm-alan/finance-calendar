@@ -26,8 +26,8 @@ const deleteItem = (id: number): ItemAction => ({
   id
 });
 
-export const GetItems = () => async (dispatch: Dispatch<ItemAction>) => {
-  const { items } = await csrfetch.get('/api/items/');
+export const GetItems = (accountId: number) => async (dispatch: Dispatch<ItemAction>) => {
+  const { items } = await csrfetch.get(`/api/${accountId}/items/`);
   dispatch(loadItems(items));
 };
 
