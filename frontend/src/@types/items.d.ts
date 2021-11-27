@@ -24,11 +24,16 @@ declare type NewItem = {
 };
 
 declare type ExtantItemCollection = {
-  [key: number | string]: ExtantItem | null;
+  [key: number]: ExtantItem | null;
+};
+
+declare type DatedItemCollection = {
+  [key: string]: ExtantItemCollection;
 };
 
 declare type ItemState = {
-  all: ItemCollection;
+  all: ExtantItemCollection;
+  byDate: DatedItemCollection;
   lock: number;
 };
 
