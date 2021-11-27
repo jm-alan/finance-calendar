@@ -34,12 +34,12 @@ const appendItemsByDate = (items: ExtantItemCollection, date: string): ItemActio
 });
 
 export const GetItems = (accountId: number) => async (dispatch: Dispatch<ItemAction>) => {
-  const { items } = await csrfetch.get(`/api/${accountId}/items/`);
+  const { items } = await csrfetch.get(`/api/accounts/${accountId}/items/`);
   dispatch(loadItems(items));
 };
 
 export const GetItemsByDate = (accountId: number, date: string) => async (dispatch: Dispatch<ItemAction>) => {
-  const { items } = await (accountId ? csrfetch.get(`/api/${accountId}/items/${date}/`) : csrfetch.get(`/api/items/${date}/`));
+  const { items } = await (accountId ? csrfetch.get(`/api/accounts/${accountId}/items/${date}/`) : csrfetch.get(`/api/items/${date}/`));
   dispatch(appendItemsByDate(items, date));
 };
 
