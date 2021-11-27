@@ -15,7 +15,7 @@
 }
 
 .weekday_container {
-  width: calc(100vw - 200px);
+  width: calc(100vw - 100px);
   display: grid;
   background-color: white;
   grid-template-columns: repeat(7, 1fr);
@@ -34,8 +34,8 @@
 .date_container {
   display: grid;
   height: calc(var(--below-navbar) - 80px);
-  width: 100%;
-  padding: 30px 100px;
+  width: calc(100vw - 100px);
+  padding: 30px 0;
   grid-template-columns: repeat(7, 1fr);
 }
 
@@ -43,29 +43,75 @@
   position: relative;
   background-color: white;
   margin: 5px;
-  padding: 5px;
   border-radius: 10px;
   overflow: hidden;
 }
 
+.calendar_day-items-list {
+  height: calc(100% - 25px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.calendar_day-item-entry {
+  padding: 0 5px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+  border-bottom: 1px solid var(--root-background-blue)
+}
+
+.calendar_day-header {
+  padding-right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--root-background-blue);
+}
+
+.positive {
+  color: rgb(32, 173, 32);
+}
+
+.negative {
+  color: red;
+}
+
+.positive::before {
+  content: '+';
+}
+
+.negative::before {
+  content: '-';
+}
+
 .calendar_date {
+  width: 30px;
+  height: 25px;
   color: var(--root-relative-seafoam);
   font-weight: bold;
-  position: absolute;
   top: 0;
   left: 0;
-  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 20px;
   border-bottom-right-radius: 10px;
 }
 
 .calendar_controls {
   height: 50px;
-  width: 100%;
+  width: calc(100vw - 100px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 100px;
 }
 
 .calendar_controls button {
