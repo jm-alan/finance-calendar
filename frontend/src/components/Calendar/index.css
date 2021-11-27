@@ -21,7 +21,7 @@
 
 .date_container {
   display: grid;
-  height: 100%;
+  height: calc(var(--below-navbar) - 80px);
   width: 100%;
   padding: 30px 100px;
   grid-template-columns: repeat(7, 1fr);
