@@ -4,12 +4,30 @@ import csrfetch from "./csrfetch";
 // constants
 const GET_ACCOUNTS = 'account/GET_ACCOUNTS';
 const CREATE_ACCOUNTS = 'accounts/CREATE_ACCOUNTS';
-const DELETE_ACCOUNTS = 'accounts/DELETE_ACCOUNTS';
+const DELETE_ACCOUNT = 'accounts/DELETE_ACCOUNT';
+const SELECT_ACCOUNT = 'accounts/SELECT';
+const DESELECT_ACCOUNT = 'accounts/DESELECT';
 
 // actions
-const getAccounts = (accounts: ExtantAccountCollection) => ({ type: GET_ACCOUNTS, accounts });
-const newAccount = (account: ExtantAccount) => ({ type: CREATE_ACCOUNTS, account });
-const deleteAccount = (account: ExtantAccount) => ({ type: CREATE_ACCOUNTS, account });
+const getAccounts = (accounts: ExtantAccountCollection): AccountAction => ({
+  type: GET_ACCOUNTS,
+  accounts
+});
+const newAccount = (account: ExtantAccount): AccountAction => ({
+  type: CREATE_ACCOUNTS,
+  account
+});
+const deleteAccount = (account: ExtantAccount): AccountAction => ({
+  type: CREATE_ACCOUNTS,
+  account
+});
+export const SelectAccount = (id: number): AccountAction => ({
+  type: SELECT_ACCOUNT,
+  id
+});
+export const DeselectAccount = (): AccountAction => ({
+  type: DESELECT_ACCOUNT
+});
 
 // thunk actions
 export const getAllAccounts = () => async (dispatch: Dispatch<AccountAction>) => {
@@ -44,8 +62,8 @@ export const deleteAccountById = (id: number) => async (dispatch: Dispatch<Accou
 
 // reducer
 export default function reducer (
-  state: AccountState = { all: {}, loaded: false },
-  { type, account, accounts }: AccountAction
+  state: AccountState = { all: {}, loaded: false, selected: null },
+  { type, account, accounts, id }: AccountAction
 ): AccountState {
   switch (type) {
     case GET_ACCOUNTS:
@@ -63,14 +81,25 @@ export default function reducer (
           [account.id]: account
         }
       };
-    case DELETE_ACCOUNTS:
-      if (!account) return state;
+    case DELETE_ACCOUNT:
+      if (!id) return state;
+      delete state.all[id];
       return {
         ...state,
         all: {
-          ...state.all,
-          [account.id]: null
+          ...state.all
         }
+      };
+    case SELECT_ACCOUNT:
+      if (!id) return state;
+      return {
+        ...state,
+        selected: state.all[id]
+      };
+    case DESELECT_ACCOUNT:
+      return {
+        ...state,
+        selected: null
       };
     default:
       return state;

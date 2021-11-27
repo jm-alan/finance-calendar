@@ -1,14 +1,26 @@
 .calendar_container {
-  height: calc(var(--below-navbar) - 50px);
+  height: var(--below-navbar);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.calendar_header {
+  position: absolute;
+  font-size: 60px;
+  font-weight: bolder;
+  color: white;
+  top: -25px;
 }
 
 .weekday_container {
+  width: calc(100vw - 200px);
   display: grid;
   background-color: white;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(1, 30px);
-  margin: 0px 100px;
-  margin-top: 20px;
+  height: 30px;
 }
 
 .weekday {
@@ -21,11 +33,10 @@
 
 .date_container {
   display: grid;
-  height: 100%;
+  height: calc(var(--below-navbar) - 80px);
   width: 100%;
   padding: 30px 100px;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(6, 1fr);
 }
 
 .calendar_day {
@@ -49,13 +60,52 @@
 }
 
 .calendar_controls {
+  height: 50px;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
   padding: 0px 100px;
 }
 
 .calendar_controls button {
   margin-left: 10px;
   width: 50px;
+}
+
+.account_selector-position-lock {
+  cursor: pointer;
+  z-index: 999;
+  height: 30px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.calendar_controls .accounts_list {
+  border-top: 1px solid var(--root-relative-seafoam);
+}
+
+.calendar_controls .account_selector {
+  border-radius: 5px;
+  position: relative;
+  background-color: white;
+  border: 1px solid black;
+  overflow: hidden;
+  width: 400px;
+  transition:
+    height 0.3s;
+}
+
+.selected_account, .account_selectable {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.calendar_controls .account_selector .account_selectable:hover {
+  background-color: var(--root-background-blue);
+  color: white;
 }

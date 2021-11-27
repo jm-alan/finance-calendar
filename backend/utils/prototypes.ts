@@ -1,11 +1,35 @@
 interface String {
+  /**
+   * Returns a new string with the first letter capitalized.
+   */
   upperCaseFirst (): string;
+  /**
+   * Returns a new string resulting from repeatedly removing the
+   * last character of the original string until the resultant
+   * string matches the input pattern.
+   * If the pattern is never matched, returns an empty string.
+   * @param pattern: the pattern which the input string must match.
+   */
   truncateUntil (pattern: RegExp): string;
 };
 
-interface Array<T> {
-  toKeyedObject (key: string): object;
-  asyncForEach (callback: (element?: any, index?: number, selfRef?: any[]) => Promise<void>): Promise<void>;
+interface Array<T extends object> {
+  /**
+   * Returns a new object with each item of the original array
+   * mapped to the value found at `selector`
+   * @param key: string
+   */
+  toKeyedObject (selector: string): {
+    [key: number | string]: T;
+  };
+  /**
+   * Takes in an asynchronous callback, and returns a promise,
+   * allowing asynchronous actions to be performed on every member
+   * of the array. Guarantees that each call to `callback` will be
+   * complete before the next begins.
+   * @param callback: the asynchronous function to execute on each member of the array
+   */
+  asyncForEach (callback: (element?: any, index?: number, selfRef?: Array<T>) => Promise<void>): Promise<void>;
 };
 
 String.prototype.upperCaseFirst = function () {
@@ -30,17 +54,17 @@ String.prototype.truncateUntil = function (pattern: RegExp) {
   return out;
 };
 
-Array.prototype.toKeyedObject = function (key: string) {
+Array.prototype.toKeyedObject = function (selector: string) {
   return this.reduce(
     (
       acc: {
-        [key: number]: any;
+        [key: number | string]: any;
       },
       next: {
-        [key: string]: number;
+        [key: string]: number | string;
       }
     ) => {
-      acc[next[key]] = next;
+      acc[next[selector]] = next;
       return acc;
     }, {});
 };

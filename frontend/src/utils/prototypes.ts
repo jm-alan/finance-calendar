@@ -1,12 +1,12 @@
 /* eslint-disable no-extend-native */
 
-export type EnumeratedmonthObject = {
+export type EnumeratedMonthObject = {
   [key: string]: number;
 };
 
 Date.prototype.toEnumeratedMonthObject = function () {
   const origDate = this.getDate();
-  const monthObj: EnumeratedmonthObject = {};
+  const monthObj: EnumeratedMonthObject = {};
 
   this.setDate(1);
   monthObj[this.toLocaleDateString(undefined, { dateStyle: 'short' })] = this.getDay();

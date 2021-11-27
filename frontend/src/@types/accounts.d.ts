@@ -9,12 +9,13 @@ declare type ExtantAccount = {
 };
 
 declare type ExtantAccountCollection = {
-  [key: number]: ExtantAccount | null;
+  [key: number]: ExtantAccount;
 };
 
 declare type AccountState = {
   all: ExtantAccountCollection;
   loaded: boolean;
+  selected: ExtantAccount | null;
 };
 
 declare type NewAccount = {
@@ -25,7 +26,8 @@ declare type NewAccount = {
 };
 
 declare type AccountAction = {
-  type: string;
+  type: 'account/GET_ACCOUNTS' | 'accounts/CREATE_ACCOUNTS' | 'accounts/DELETE_ACCOUNT' | 'accounts/SELECT' | 'accounts/DESELECT';
+  id?: number;
   account?: ExtantAccount;
   accounts?: ExtantAccountCollection;
 };

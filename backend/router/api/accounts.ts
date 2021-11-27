@@ -34,6 +34,25 @@ router.get(
   })
 );
 
+router.get(
+  '/:id(\\d+)/items/:month(\\d+)/:day(\\d+)/:year(\\d+)/',
+  restoreOrReject,
+  asyncHandler(async (req: AuthenticatedRequest, res) => {
+    const { user, params: { id, month, day, year } } = req;
+    const account = await user.findAccountByPk(+id);
+    if (!account) {
+      return res.status(404).json({
+        errors: [
+          'An account with that ID belonging to this user was not found in the database.'
+        ]
+      });
+    }
+
+    const items = (await account.getItems({ where: { date_expected: `${month}/${day}/${year}` } })).toKeyedObject('id');
+    res.json({ items });
+  })
+);
+
 router.post(
   '/:id(\\d+)/items/',
   restoreOrReject,

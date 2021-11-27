@@ -1,17 +1,17 @@
 import type { Dispatch } from 'redux';
-import type { csrfFetch } from '../store/csrfetch';
-import type { EnumeratedmonthObject } from '../utils/prototypes';
+import type { CsrfFetch } from '../store/csrfetch';
+import type { EnumeratedMonthObject } from '../utils/prototypes';
 
 declare global {
   interface Window {
     store: any;
     dispatch: Dispatch<any>;
-    csrfetch: csrfFetch;
+    csrfetch: CsrfFetch;
     findCookie (cookie: string): string;
   };
 
   interface Date {
-    toEnumeratedMonthObject (): EnumeratedmonthObject;
+    toEnumeratedMonthObject (): EnumeratedMonthObject;
   };
 
   type State = {
@@ -21,6 +21,7 @@ declare global {
     errors: ErrorState;
     calendar: CalendarState;
     accounts: AccountState;
+    items: ItemState;
   };
 }
 

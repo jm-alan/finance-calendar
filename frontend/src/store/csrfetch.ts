@@ -4,7 +4,7 @@ import type { Dispatch } from 'redux';
 import findCookie from '../utils/findCookie';
 import { SetErrors } from './errors';
 
-class CsrfFetch {
+export class CsrfFetch {
   private readonly options: [string, reqOpts];
   private readonly genericErrors: string[];
   private dispatch: Dispatch<ErrorAction> | (() => void) = () => {};

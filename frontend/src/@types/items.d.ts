@@ -24,17 +24,23 @@ declare type NewItem = {
 };
 
 declare type ExtantItemCollection = {
-  [key: number]: ExtantItem | null;
+  [key: number]: ExtantItem;
+};
+
+declare type DatedItemCollection = {
+  [key: string]: ExtantItemCollection;
 };
 
 declare type ItemState = {
-  all: ItemCollection;
-  loaded: boolean;
+  all: ExtantItemCollection;
+  byDate: DatedItemCollection;
+  lock: number;
 };
 
 declare type ItemAction = {
-  type: 'items/ALL' | 'items/CREATE' | 'items/UPDATE' | 'items/DELETE';
+  type: 'items/ALL' | 'items/CREATE' | 'items/UPDATE' | 'items/DELETE' | 'items/APPEND_BY_DATE' | 'items/REMOVE_BY_DATE';
   item?: ExtantItem;
   items?: ExtantItemCollection;
   id?: number;
+  date?: string;
 };
