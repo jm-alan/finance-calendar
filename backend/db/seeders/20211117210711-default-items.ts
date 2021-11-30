@@ -1,6 +1,6 @@
 'use strict';
 
-import { QueryInterface } from "sequelize/types";
+import { QueryInterface, Sequelize } from "sequelize/types";
 
 const defaultItems: any[] = [];
 
@@ -45,11 +45,12 @@ for (let i = 0; i < 1000; i++) {
 }
 
 export default {
-  up: async (queryInterface: QueryInterface) => {
+  up: async (queryInterface: QueryInterface, _sequelize: Sequelize) => {
     await queryInterface.bulkInsert('Items', defaultItems);
   },
 
-  down: async (queryInterface: QueryInterface) => {
+  down: async (queryInterface: QueryInterface, sequelize: Sequelize) => {
     await queryInterface.bulkDelete('Items', null, {});
+    await sequelize.query('truncate "Items" restart identity cascade');
   }
 };
