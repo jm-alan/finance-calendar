@@ -1,5 +1,5 @@
 .calendar_container {
-  height: var(--below-navbar);
+  height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -33,7 +33,7 @@
 
 .date_container {
   display: grid;
-  height: calc(var(--below-navbar) - 80px);
+  height: calc(100vh - 80px);
   width: calc(100vw - 100px);
   padding: 30px 0;
   grid-template-columns: repeat(7, 1fr);

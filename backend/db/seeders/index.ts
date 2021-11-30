@@ -1,4 +1,4 @@
-import { QueryInterface } from 'sequelize/types';
+import { QueryInterface, Sequelize } from 'sequelize/types';
 import seedUsers from './20210429142508-default-users';
 import seedAccounts from './20211117200914-accounts';
 import seedItems from './20211117210711-default-items';
@@ -7,14 +7,14 @@ import '../../utils/prototypes';
 
 type actionArg = 'up' | 'down';
 type seederExport = {
-  up: (queryInterface: QueryInterface) => Promise<void>;
-  down: (queryInterface: QueryInterface) => Promise<void>;
+  up: (queryInterface: QueryInterface, sequelize: Sequelize) => Promise<void>;
+  down: (queryInterface: QueryInterface, sequelize: Sequelize) => Promise<void>;
 };
 type orderedSeeder = [
   number,
   seederExport,
   'Users' | 'Accounts' | 'Items'
-]
+];
 
 const action = (process.argv[2] || 'up') as actionArg;
 const qi = sequelize.getQueryInterface();
@@ -28,6 +28,6 @@ if (action === 'down') seeders.sort(([a], [b]) => b - a);
 
 seeders.asyncForEach(async (seeder: orderedSeeder) => {
   console.log(`Running ${seeder[2]}: ${action}`);
-  await seeder[1][action](qi);
+  await seeder[1][action](qi, sequelize);
   console.log(`${seeder[2]}: ${action} complete`);
 });

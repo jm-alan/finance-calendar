@@ -7,11 +7,16 @@ const CREATE_ACCOUNTS = 'accounts/CREATE_ACCOUNTS';
 const DELETE_ACCOUNT = 'accounts/DELETE_ACCOUNT';
 const SELECT_ACCOUNT = 'accounts/SELECT';
 const DESELECT_ACCOUNT = 'accounts/DESELECT';
+const UPDATE_ACCOUNT = 'accounts/UPDATE';
 
 // actions
 const getAccounts = (accounts: ExtantAccountCollection): AccountAction => ({
   type: GET_ACCOUNTS,
   accounts
+});
+const updateAccount = (account: ExtantAccount): AccountAction => ({
+  type: UPDATE_ACCOUNT,
+  account
 });
 const newAccount = (account: ExtantAccount): AccountAction => ({
   type: CREATE_ACCOUNTS,
@@ -34,6 +39,11 @@ export const getAllAccounts = () => async (dispatch: Dispatch<AccountAction>) =>
   const { accounts }: { accounts: ExtantAccountCollection; } = await csrfetch.get('/api/accounts/');
   dispatch(getAccounts(accounts));
 };
+
+export const updateAccountById = (id: number, balance: number, name: string) => async (dispatch: Dispatch<AccountAction>) => {
+  const { account }: { account: ExtantAccount; } = await csrfetch.patch(`/api/accounts/${id}`, {balance, name});
+  dispatch(updateAccount(account));
+}
 
 export const createAccount = (accountObj: NewAccount) => async (dispatch: Dispatch<AccountAction>) => {
   const { name, balance, historicBalance } = accountObj;
@@ -71,6 +81,15 @@ export default function reducer (
       return {
         ...state,
         all: accounts
+      };
+    case UPDATE_ACCOUNT:
+      if (!account) return state;
+      return {
+        ...state,
+        all: {
+          ...state.all,
+          [account.id]: account
+        }
       };
     case CREATE_ACCOUNTS:
       if (!account) return state;

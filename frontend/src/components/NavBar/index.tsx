@@ -1,3 +1,4 @@
+import { MouseEventHandler, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -5,7 +6,8 @@ import LoginForm from '../Auth/LoginForm';
 import SignupForm from '../Auth/SignupForm';
 import { SetModal } from '../../store/modal';
 import { LogOut } from '../../store/session';
-import { ShowModal } from '../../store/UX';
+import { Hidebar, ShowModal, Sidebar } from '../../store/UX';
+import { useEventListener } from '../../utils/hooks';
 
 import './index.css';
 
@@ -13,6 +15,9 @@ export default function NavBar () {
   const dispatch = useDispatch();
 
   const user = useSelector((state: State) => state.session.user);
+  const sidebar = useSelector((state: State) => state.UX.navBar);
+
+  const addDocumentListener = useEventListener(document);
 
   const popLogin = () => {
     dispatch(SetModal(LoginForm));
@@ -26,32 +31,50 @@ export default function NavBar () {
 
   const logOut = () => dispatch(LogOut());
 
+  const resist: MouseEventHandler<HTMLElement> = e => e.stopPropagation();
+
+  useEffect(() => {
+    const hidebar = () => dispatch(Hidebar());
+    if (sidebar) return addDocumentListener.click(hidebar);
+  }, [dispatch, sidebar]);
+
   return (
-    <nav>
-      {user
-        ? (
-          <>
-            <Link to='/'>
-              Home
-            </Link>
-            <Link to='/users/me/'>
-              My Profile
-            </Link>
-            <button onClick={logOut}>
-              Log Out
-            </button>
-          </>
-        )
-        : (
-          <div className='button_container'>
-            <button className='main_button' onClick={popLogin}>
-              Log In
-            </button>
-            <button className='main_button' onClick={popSignup}>
-              Sign Up
-            </button>
-          </div>
-        )}
-    </nav>
+    <>
+      <button
+        className='navbar_show_hide'
+        onClick={() => dispatch(!sidebar ? Sidebar() : Hidebar())}
+      >
+        <div className='navbar_button--inner first' />
+        <div className='navbar_button--inner second' />
+        <div className='navbar_button--inner third' />
+        <div className='navbar_button--inner fourth' />
+      </button>
+      <nav onClick={resist} className={`${sidebar ? 'show' : ''}`}>
+        {user
+          ? (
+            <>
+              <Link to='/'>
+                Home
+              </Link>
+              <Link to='/users/me/'>
+                My Profile
+              </Link>
+              <button onClick={logOut}>
+                Log Out
+              </button>
+            </>
+          )
+          : (
+            <div className='button_container'>
+              <button className='main_button' onClick={popLogin}>
+                Log In
+              </button>
+              <button className='main_button' onClick={popSignup}>
+                Sign Up
+              </button>
+            </div>
+          )}
+      </nav>
+    </>
   );
 }
