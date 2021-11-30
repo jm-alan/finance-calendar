@@ -128,14 +128,14 @@ router.patch(
   '/:id(\\d+)',
   restoreOrReject,
   asyncHandler(async (req: AuthenticatedRequest, res) => {
-    const { user, params: { id }, body: { balance } } = req;
+    const { user, params: { id }, body: { balance, name } } = req;
     const account = await user.findAccountByPk(+id);
     if (!account) return res.status(404).json({
       errors: [
         'An account with that ID belonging to this user was not found in the database.'
       ]
     });
-    account.update({ balance })
+    account.update({ balance, name })
     res.json({ account })
   })
 )

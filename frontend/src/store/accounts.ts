@@ -40,8 +40,8 @@ export const getAllAccounts = () => async (dispatch: Dispatch<AccountAction>) =>
   dispatch(getAccounts(accounts));
 };
 
-export const updateAccountById = (id: number, balance: number) => async (dispatch: Dispatch<AccountAction>) => {
-  const { account }: { account: ExtantAccount; } = await csrfetch.patch(`/api/accounts/${id}`, {balance});
+export const updateAccountById = (id: number, balance: number, name: string) => async (dispatch: Dispatch<AccountAction>) => {
+  const { account }: { account: ExtantAccount; } = await csrfetch.patch(`/api/accounts/${id}`, {balance, name});
   dispatch(updateAccount(account));
 }
 

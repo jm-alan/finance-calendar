@@ -18,7 +18,7 @@ const Account = ({ id, account, balance }: accountProps) => {
 
     const handleEdit = () => {
         if (clicked == true) {
-            dispatch(updateAccountById(id, initialBalance ?? 0))
+            dispatch(updateAccountById(id, initialBalance ?? 0, accountName))
             setClicked(false)
         } else {
             setClicked(true)
