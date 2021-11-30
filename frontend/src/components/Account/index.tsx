@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch }from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateAccountById } from "../../store/accounts";
 
 
@@ -14,6 +14,7 @@ const Account = ({ id, account, balance }: accountProps) => {
 
     const [clicked, setClicked] = useState(false);
     const [initialBalance, setInitialBalance] = useState(balance);
+    const [accountName, setAccountName] = useState(`${account}`);
 
     const handleEdit = () => {
         if (clicked == true) {
@@ -28,7 +29,7 @@ const Account = ({ id, account, balance }: accountProps) => {
         return (
             <div>
                 <div>
-                    <h2>{account}</h2>
+                    <h2>{accountName}</h2>
                     <p>$ {initialBalance}</p>
                 </div>
                 <button onClick={() => handleEdit()}>edit</button>
@@ -38,7 +39,10 @@ const Account = ({ id, account, balance }: accountProps) => {
         return (
             <div>
                 <div>
-                    <h2>{account}</h2>
+                    <input
+                        value={accountName}
+                        onChange={(e) => setAccountName(e.target.value)}
+                    ></input>
                     <input
                         value={initialBalance}
                         onChange={(e) => setInitialBalance(+e.target.value)}
