@@ -1,3 +1,4 @@
+import { MouseEventHandler, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -6,15 +7,17 @@ import SignupForm from '../Auth/SignupForm';
 import { SetModal } from '../../store/modal';
 import { LogOut } from '../../store/session';
 import { Hidebar, ShowModal, Sidebar } from '../../store/UX';
+import { useEventListener } from '../../utils/hooks';
 
 import './index.css';
-import { MouseEventHandler, useEffect } from 'react';
 
 export default function NavBar () {
   const dispatch = useDispatch();
 
   const user = useSelector((state: State) => state.session.user);
   const sidebar = useSelector((state: State) => state.UX.navBar);
+
+  const addDocumentListener = useEventListener(document);
 
   const popLogin = () => {
     dispatch(SetModal(LoginForm));
@@ -32,10 +35,7 @@ export default function NavBar () {
 
   useEffect(() => {
     const hidebar = () => dispatch(Hidebar());
-    if (sidebar) document.addEventListener('click', hidebar);
-    return () => {
-      document.removeEventListener('click', hidebar);
-    };
+    if (sidebar) return addDocumentListener.click(hidebar);
   }, [dispatch, sidebar]);
 
   return (
@@ -44,9 +44,10 @@ export default function NavBar () {
         className='navbar_show_hide'
         onClick={() => dispatch(!sidebar ? Sidebar() : Hidebar())}
       >
-        <div className='navbar_hamburger' />
-        <div className='navbar_hamburger' />
-        <div className='navbar_hamburger' />
+        <div className='navbar_button--inner first' />
+        <div className='navbar_button--inner second' />
+        <div className='navbar_button--inner third' />
+        <div className='navbar_button--inner fourth' />
       </button>
       <nav onClick={resist} className={`${sidebar ? 'show' : ''}`}>
         {user
