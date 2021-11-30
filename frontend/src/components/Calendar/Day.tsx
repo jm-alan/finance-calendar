@@ -56,7 +56,7 @@ export default function Day ({ date, gridColumnStart }: DayProps) {
           {date.split('/')[1]}
         </div>
         <div className='calendar_day-net'>
-          Net: <span className={`daily-net${neutralPositiveNegative}`}>{net}</span>
+          Net: <span className={`daily-net${neutralPositiveNegative}`}>{Math.abs(net)}</span>
         </div>
       </div>
       {items && (
