@@ -29,6 +29,7 @@ const Profile = () => {
         {Object.values(accounts).map((account, idx) => account && (
           <Account
           key={idx}
+          id={account.id}
           account={account.name}
           balance={account.balance}
           />

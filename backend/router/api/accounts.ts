@@ -124,4 +124,20 @@ router.delete(
   })
 );
 
+router.patch(
+  '/:id(\\d+)',
+  restoreOrReject,
+  asyncHandler(async (req: AuthenticatedRequest, res) => {
+    const { user, params: { id }, body: { balance } } = req;
+    const account = await user.findAccountByPk(+id);
+    if (!account) return res.status(404).json({
+      errors: [
+        'An account with that ID belonging to this user was not found in the database.'
+      ]
+    });
+    account.update({ balance })
+    res.json({ account })
+  })
+)
+
 export default router;

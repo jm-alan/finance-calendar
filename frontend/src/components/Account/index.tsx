@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useDispatch }from "react-redux";
+import { updateAccountById } from "../../store/accounts";
 
 
 type accountProps = {
+    id: number,
     account: string,
     balance: number
 }
 
-const Account = ({ account, balance }: accountProps) => {
+const Account = ({ id, account, balance }: accountProps) => {
     const dispatch = useDispatch();
 
     const [clicked, setClicked] = useState(false);
@@ -15,7 +17,7 @@ const Account = ({ account, balance }: accountProps) => {
 
     const handleEdit = () => {
         if (clicked == true) {
-            
+            dispatch(updateAccountById(id, initialBalance ?? 0))
             setClicked(false)
         } else {
             setClicked(true)
