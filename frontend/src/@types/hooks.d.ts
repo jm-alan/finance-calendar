@@ -1,7 +1,19 @@
+/**
+ * Destroys the event listener created by the parent function.
+ */
 declare type ListenDestructor = () => void;
 
+/**
+ * Takes in an event listener callback for the corresponding event.
+ * Returns a function that, when called, will destroy
+ * the event listener.
+ */
 declare type ListenComposer = (listener: () => void) => ListenDestructor;
 
+/**
+ * An enum type consisting of all of the DOM events valid
+ * on Document and Element types
+ */
 declare type EventListenerComposeObject = {
   afterscriptexecute: ListenComposer;
   auxclick: ListenComposer;
@@ -59,3 +71,61 @@ declare type EventListenerComposeObject = {
   webkitmouseforcewillbegin: ListenComposer;
   wheel: ListenComposer;
 };
+
+declare enum EventTypes {
+  'afterscriptexecute',
+  'auxclick',
+  'beforescriptexecute',
+  'blur',
+  'click',
+  'compositionend',
+  'compositionstart',
+  'compositionupdate',
+  'contextmenu',
+  'copy',
+  'cut',
+  'dblclick',
+  'DOMActivate',
+  'DOMMouseScroll',
+  'error',
+  'focusin',
+  'focusout',
+  'focus',
+  'fullscreenchange',
+  'fullscreenerror',
+  'gesturechange',
+  'gestureend',
+  'gesturestart',
+  'keydown',
+  'keypress',
+  'keyup',
+  'mousedown',
+  'mouseenter',
+  'mouseleave',
+  'mousemove',
+  'mouseout',
+  'mouseover',
+  'mouseup',
+  'mousewheel',
+  'msContentZoom',
+  'MSGestureChange',
+  'MSGestureEnd',
+  'MSGestureHold',
+  'MSGestureStart',
+  'MSGestureTap',
+  'MSInertiaStart',
+  'MSManipulationStateChanged',
+  'paste',
+  'scroll',
+  'select',
+  'show',
+  'touchcancel',
+  'touchend',
+  'touchmove',
+  'touchstart',
+  'webkitmouseforcechanged',
+  'webkitmouseforcedown',
+  'webkitmouseforceup',
+  'webkitmouseforcewillbegin',
+  'wheel',
+}
