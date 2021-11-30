@@ -56,20 +56,18 @@ const events = [
   'wheel',
 ];
 
-const compose = (el: Element | Document, event: string): ListenComposer => listener => {
+const compose = (el: Element | Document, event: string): ListenComposer => (listener): ListenDestructor => {
   el.addEventListener(event, listener);
   return () => el.removeEventListener(event, listener);
 };
 
-export const useEventListener = (el: Element | Document): EventListenerComposeObject => {
-  return events.reduce(
-    (
-      acc: {
-        [key: string]: ListenComposer;
-      },
-      next
-    ) => {
-      acc[next] = compose(el, next);
-      return acc;
-    }, {}) as EventListenerComposeObject;
-};
+export const useEventListener = (el: Element | Document) => events.reduce(
+  (
+    acc: {
+      [key: string]: ListenComposer;
+    },
+    next
+  ) => {
+    acc[next] = compose(el, next);
+    return acc;
+  }, {}) as EventListenerComposeObject;
