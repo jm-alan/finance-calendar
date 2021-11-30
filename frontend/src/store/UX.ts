@@ -2,6 +2,8 @@ const SHOW_MODAL = 'UX/modal/SHOW';
 const HIDE_MODAL = 'UX/modal/HIDE';
 const EXPAND_ACCOUNTS = 'UX/accounts/EXPAND';
 const COLLAPSE_ACCOUNTS = 'UX/accounts/COLLAPSE';
+const SIDEBAR = 'UX/sidebar/SHOW';
+const HIDEBAR = 'UX/sidebar/HIDE';
 
 export const ShowModal = (): UXAction => ({
   type: SHOW_MODAL
@@ -25,13 +27,35 @@ export default function reducer (
 ): UXState {
   switch (type) {
     case SHOW_MODAL:
-      return { ...state, modal: true };
+      return {
+        ...state,
+        modal: true
+      };
     case HIDE_MODAL:
-      return { ...state, modal: false };
+      return {
+        ...state,
+        modal: false
+      };
     case EXPAND_ACCOUNTS:
-      return { ...state, accountsDropdown: true };
+      return {
+        ...state,
+        accountsDropdown: true
+      };
     case COLLAPSE_ACCOUNTS:
-      return { ...state, accountsDropdown: false };
+      return {
+        ...state,
+        accountsDropdown: false
+      };
+    case SIDEBAR:
+      return {
+        ...state,
+        navBar: true
+      };
+    case HIDEBAR:
+      return {
+        ...state,
+        navBar: false
+      };
     default:
       return state;
   }
