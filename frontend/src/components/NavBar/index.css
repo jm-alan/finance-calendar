@@ -12,4 +12,5 @@
 
 nav {
   height: 35px;
+  position: fixed;
 }
