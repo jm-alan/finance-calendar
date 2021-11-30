@@ -1,6 +1,7 @@
 declare type UXState = {
   modal: boolean;
   accountsDropdown: boolean;
+  navBar: boolean;
 };
 
 declare type UXAction = {

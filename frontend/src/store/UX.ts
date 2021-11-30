@@ -20,7 +20,7 @@ export const CollapseAccounts = (): UXAction => ({
 });
 
 export default function reducer (
-  state: UXState = { modal: false, accountsDropdown: false },
+  state: UXState = { modal: false, accountsDropdown: false, navBar: false },
   { type }: UXAction
 ): UXState {
   switch (type) {
