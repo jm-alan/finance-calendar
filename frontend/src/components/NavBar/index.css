@@ -28,9 +28,49 @@ nav.show {
 }
 
 .navbar_show_hide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
   position: fixed;
   z-index: 1000;
-  top: 0;
-  left: 0;
+  top: -50px;
+  left: -50px;
+  border: none;
+  border-radius: 50%;
   background-color: var(--root-background-purple);
 }
+
+.navbar_button--inner {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.navbar_button--inner.first {
+  z-index: 4;
+  background-color: var(--root-background-purple);
+  width: 20px;
+  height: 20px;
+}
+
+.navbar_button--inner.second {
+  z-index: 3;
+  background-color: white;
+  width: 40px;
+  height: 40px;
+}
+
+.navbar_button--inner.third {
+  z-index: 2;
+  background-color: var(--root-background-purple);
+  width: 60px;
+  height: 60px;
+}
+
+.navbar_button--inner.fourth {
+  z-index: 1;
+  background-color: white;
+  width: 80px;
+  height: 80px;
+} 
