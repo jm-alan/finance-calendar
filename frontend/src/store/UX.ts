@@ -21,6 +21,14 @@ export const CollapseAccounts = (): UXAction => ({
   type: COLLAPSE_ACCOUNTS
 });
 
+export const Sidebar = (): UXAction => ({
+  type: SIDEBAR
+});
+
+export const Hidebar = (): UXAction => ({
+  type: HIDEBAR
+});
+
 export default function reducer (
   state: UXState = { modal: false, accountsDropdown: false, navBar: false },
   { type }: UXAction
