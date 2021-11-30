@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 
 import { getAllAccounts } from '../../store/accounts';
 
+import Account from '../Account';
+
 import './index.css';
 
 const Profile = () => {
@@ -25,10 +27,11 @@ const Profile = () => {
       <div className='accounts_container'>
         <h1>Accounts Summary</h1>
         {Object.values(accounts).map((account, idx) => account && (
-          <div key={idx}>
-            <h2>{account.name}</h2>
-            <p>${account.balance}</p>
-          </div>
+          <Account
+          key={idx}
+          account={account.name}
+          balance={account.balance}
+          />
         ))}
       </div>
     </div>
