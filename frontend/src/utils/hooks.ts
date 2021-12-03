@@ -61,13 +61,17 @@ const compose = (el: Element | Document, event: string): ListenComposer => (list
   return () => el.removeEventListener(event, listener);
 };
 
-export const useEventListener = (el: Element | Document) => events.reduce(
+const eventComposer = (el: Element | Document): EventListenerComposeObject => events.reduce(
   (
     acc: {
       [key in typeof events[number]]: ListenComposer;
     },
     next
   ) => {
-    acc[next] = compose(el, next);
+    acc[next] = compose(document, next);
     return acc;
-  }, {}) as EventListenerComposeObject;
+  }, {} as EventListenerComposeObject);
+
+const documentListeners: EventListenerComposeObject = eventComposer(document);
+
+export const useDocumentEvents = () => documentListeners;
