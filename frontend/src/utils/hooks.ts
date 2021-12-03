@@ -74,4 +74,4 @@ const eventComposer = (el: Element | Document): EventListenerComposeObject => ev
 
 const documentListeners: EventListenerComposeObject = eventComposer(document);
 
-export const useDocumentEvents = () => documentListeners;
+export const useDocumentEvents = (): EventListenerComposeObject => documentListeners;
