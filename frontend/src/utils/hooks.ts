@@ -54,7 +54,7 @@ const events = [
   'webkitmouseforceup',
   'webkitmouseforcewillbegin',
   'wheel',
-];
+] as const;
 
 const compose = (el: Element | Document, event: string): ListenComposer => (listener): ListenDestructor => {
   el.addEventListener(event, listener);
@@ -64,7 +64,7 @@ const compose = (el: Element | Document, event: string): ListenComposer => (list
 export const useEventListener = (el: Element | Document) => events.reduce(
   (
     acc: {
-      [key: string]: ListenComposer;
+      [key in typeof events[number]]: ListenComposer;
     },
     next
   ) => {
