@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { DeselectAccount, getAllAccounts, SelectAccount } from '../../../store/accounts';
 import { CollapseAccounts, ExpandAccounts } from '../../../store/UX';
-import { useEventListener } from '../../../utils/hooks';
+import { useDocumentEvents } from '../../../utils/hooks';
 
 export default function AccountSelect () {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export default function AccountSelect () {
   const selectedAccount = useSelector((state: State) => state.accounts.selected);
   const expanded = useSelector((state: State) => state.UX.accountsDropdown);
 
-  const addDocumentListener = useEventListener(document);
+  const { click } = useDocumentEvents();
 
   const expand = () => dispatch(ExpandAccounts());
   const select = (id: number) => () => id ? dispatch(SelectAccount(id)) : dispatch(DeselectAccount());
@@ -24,8 +24,8 @@ export default function AccountSelect () {
 
   useEffect(() => {
     const collapse = () => dispatch(CollapseAccounts());
-    if (expanded) return addDocumentListener.click(collapse);
-  }, [dispatch, expanded]);
+    if (expanded) return click(collapse);
+  }, [dispatch, click, expanded]);
 
   return (
     <div className='account_selector-position-lock'>
