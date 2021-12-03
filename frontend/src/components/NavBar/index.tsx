@@ -7,7 +7,7 @@ import SignupForm from '../Auth/SignupForm';
 import { SetModal } from '../../store/modal';
 import { LogOut } from '../../store/session';
 import { Hidebar, ShowModal, Sidebar } from '../../store/UX';
-import { useEventListener } from '../../utils/hooks';
+import { useDocumentEvents } from '../../utils/hooks';
 
 import './index.css';
 
@@ -17,7 +17,7 @@ export default function NavBar () {
   const user = useSelector((state: State) => state.session.user);
   const sidebar = useSelector((state: State) => state.UX.navBar);
 
-  const addDocumentListener = useEventListener(document);
+  const addEvent = useDocumentEvents();
 
   const popLogin = () => {
     dispatch(SetModal(LoginForm));
@@ -35,8 +35,8 @@ export default function NavBar () {
 
   useEffect(() => {
     const hidebar = () => dispatch(Hidebar());
-    if (sidebar) return addDocumentListener.click(hidebar);
-  }, [dispatch, sidebar]);
+    if (sidebar) return addEvent.click(hidebar);
+  }, [dispatch, addEvent, sidebar]);
 
   return (
     <>
