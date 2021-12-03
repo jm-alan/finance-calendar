@@ -34,8 +34,7 @@ export default function NavBar () {
   const resist: MouseEventHandler<HTMLElement> = e => e.stopPropagation();
 
   useEffect(() => {
-    const hidebar = () => dispatch(Hidebar());
-    if (sidebar) return click(hidebar);
+    if (sidebar) return click(() => dispatch(Hidebar()));
   }, [dispatch, click, sidebar]);
 
   return (

@@ -23,8 +23,7 @@ export default function AccountSelect () {
   }, [dispatch, accountsLoaded]);
 
   useEffect(() => {
-    const collapse = () => dispatch(CollapseAccounts());
-    if (expanded) return click(collapse);
+    if (expanded) return click(() => dispatch(CollapseAccounts()));
   }, [dispatch, click, expanded]);
 
   return (
