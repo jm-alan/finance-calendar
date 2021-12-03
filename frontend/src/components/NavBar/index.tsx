@@ -17,7 +17,7 @@ export default function NavBar () {
   const user = useSelector((state: State) => state.session.user);
   const sidebar = useSelector((state: State) => state.UX.navBar);
 
-  const addEvent = useDocumentEvents();
+  const { click } = useDocumentEvents();
 
   const popLogin = () => {
     dispatch(SetModal(LoginForm));
@@ -35,8 +35,8 @@ export default function NavBar () {
 
   useEffect(() => {
     const hidebar = () => dispatch(Hidebar());
-    if (sidebar) return addEvent.click(hidebar);
-  }, [dispatch, addEvent, sidebar]);
+    if (sidebar) return click(hidebar);
+  }, [dispatch, click, sidebar]);
 
   return (
     <>
