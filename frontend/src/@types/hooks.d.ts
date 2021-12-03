@@ -5,7 +5,7 @@ declare type ListenDestructor = () => void;
 
 /**
  * Takes in an event listener callback for the corresponding event.
- * Returns a function that, when called, will destroy
+ * Returns a function that, when called, destroys
  * the event listener.
  */
 declare type ListenComposer = (listener: () => void) => ListenDestructor;
